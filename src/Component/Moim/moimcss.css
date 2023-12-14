@@ -1,0 +1,28 @@
+.carousel-item{
+    background-color: rgb(239, 239, 239);
+    border-radius: .5rem;
+}
+/* 스크롤바의 폭 너비 */
+#content::-webkit-scrollbar {
+    width: 10px;  
+}
+
+#content::-webkit-scrollbar-thumb {
+    background: rgb(170, 170, 170); /* 스크롤바 색상 */
+    border-radius: 10px; /* 스크롤바 둥근 테두리 */
+}
+
+#content::-webkit-scrollbar-track {
+    background: rgba(220, 20, 60, .1);  /*스크롤바 뒷 배경 색상*/
+}
+.carousel{
+    display: flex;
+    justify-content: center;
+
+}
+
+.d-block{
+    margin-left : 26%;
+    height :400px;
+    width : 600px;
+}
