@@ -2,8 +2,13 @@ import { Button, Modal } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import Join from "./Join";
 
 export default function Login({ show, handleClose }) {
+    const [showSignUpModal, setShowSignUpModal] = useState(false);
+    const openSignUpModal = () => setShowSignUpModal(true);
+    const closeSignUpModal = () => setShowSignUpModal(false);
+
 
     const [inputs, setInputs] = useState({ id: '', pwd: '' });
     const { id, pwd } = inputs;
@@ -53,8 +58,11 @@ export default function Login({ show, handleClose }) {
 
                 <Modal.Footer>
                     <Button variant="danger" onClick={signIn}>로그인</Button>
+                    <a href="#" onClick={openSignUpModal}>회원가입</a>
                 </Modal.Footer>
             </Modal>
+
+            <Join show={showSignUpModal} handleClose={closeSignUpModal} />
         </div>
     )
 }
