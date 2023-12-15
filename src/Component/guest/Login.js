@@ -3,16 +3,22 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Join from "./Join";
+import FindId from "./FindId";
 
 export default function Login({ show, handleClose }) {
     const [showSignUpModal, setShowSignUpModal] = useState(false);
     const openSignUpModal = () => setShowSignUpModal(true);
     const closeSignUpModal = () => setShowSignUpModal(false);
 
+    const [showFindIdModal, setShowFindIdModal] = useState(false);
+    const openFindIdModal = () => setShowFindIdModal(true);
+    const closeFindIdModal = () => setShowFindIdModal(false);
+
 
     const [inputs, setInputs] = useState({ id: '', pwd: '' });
     const { id, pwd } = inputs;
     const navigate = useNavigate();
+
     const onChange = (e) => {
         const { name, value } = e.target;
         setInputs({
@@ -58,11 +64,14 @@ export default function Login({ show, handleClose }) {
 
                 <Modal.Footer>
                     <Button variant="danger" onClick={signIn}>로그인</Button>
+
                     <a href="#" onClick={openSignUpModal}>회원가입</a>
+                    <a href="#" onClick={openFindIdModal}>아이디 찾기</a>
                 </Modal.Footer>
             </Modal>
 
             <Join show={showSignUpModal} handleClose={closeSignUpModal} />
+            <FindId show={showFindIdModal} handleClose={closeFindIdModal} />
         </div>
     )
 }
