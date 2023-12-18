@@ -1,4 +1,6 @@
 import {Nav, Navbar, NavDropdown} from "react-bootstrap";
+import "./Nav.css"
+import {Link} from "react-router-dom";
 
 export default function NavLogin() {
     return (
@@ -6,11 +8,12 @@ export default function NavLogin() {
             <Navbar>
                 <Navbar className="nav-login">
                     <Nav>
-                        <Nav.Link href="#">알림</Nav.Link>
-                        <NavDropdown class="profile">
-                            <NavDropdown.Item href="#">마이페이지</NavDropdown.Item>
-                            <NavDropdown.Item href="#">내모임</NavDropdown.Item>
-                            <NavDropdown.Item href="#">내리뷰</NavDropdown.Item>
+                        <Nav.Link id="notification" href="#"/>
+                        <NavDropdown id="profile">
+                            <NavDropdown.Item href="/member/info">마이페이지</NavDropdown.Item>
+                            <NavDropdown.Item href="#">메세지함</NavDropdown.Item>
+                            <NavDropdown.Item href="#">나의모임</NavDropdown.Item>
+                            <NavDropdown.Item href="#">리뷰관리</NavDropdown.Item>
                             <NavDropdown.Divider/>
                             <NavDropdown.Item href="#">로그아웃</NavDropdown.Item>
                         </NavDropdown>

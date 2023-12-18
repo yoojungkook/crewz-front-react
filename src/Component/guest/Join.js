@@ -1,14 +1,14 @@
-import { Button, Modal } from "react-bootstrap";
-import { useState } from "react";
+import {Button, Modal} from "react-bootstrap";
+import {useState} from "react";
 import axios from "axios";
 
-export default function Join({ show, handleClose }) {
+export default function Join({show, handleClose}) {
 
     /**
      * 초기값
      */
-    const [inputs, setInputs] = useState({ id: '', pwd: '', pwd2: '', name: '', tel: '', birth: '' });
-    const { id, pwd, pwd2, name, tel, birth } = inputs;
+    const [inputs, setInputs] = useState({id: '', pwd: '', pwd2: '', name: '', tel: '', birth: ''});
+    const {id, pwd, pwd2, name, tel, birth} = inputs;
 
     /**
      * 유효성 검사 메세지
@@ -113,7 +113,7 @@ export default function Join({ show, handleClose }) {
     let validButton = checkId && checkPwd && checkPwd2 && checkName && checkTel && checkBirth;
 
     const onChange = (e) => {
-        const { name, value } = e.target;
+        const {name, value} = e.target;
         setInputs({
             ...inputs,
             [name]: value
@@ -152,43 +152,43 @@ export default function Join({ show, handleClose }) {
             <Modal.Body>
                 <div className="main-signup">
                     <div className="form-el">
-                        <label htmlFor="id">아이디</label> <br />
-                        <input type="text" name="id" value={id} onChange={onChange} onInput={onInputId} />
+                        <label htmlFor="id">아이디</label> <br/>
+                        <input type="text" name="id" value={id} onChange={onChange} onInput={onInputId}/>
                         <p className="message"> {idMessage} </p>
                     </div>
 
                     <div className="form-el">
-                        <label htmlFor="pwd">비밀번호</label> <br />
+                        <label htmlFor="pwd">비밀번호</label> <br/>
                         <input type="password" id="pwd" name="pwd" value={pwd} onChange={onChange}
-                            onInput={onInputPwd} />
+                               onInput={onInputPwd}/>
                         <p className="message">{pwdMessage}</p>
                     </div>
 
                     <div className="form-el">
-                        <label htmlFor="pwd2">비밀번호 확인</label> <br />
+                        <label htmlFor="pwd2">비밀번호 확인</label> <br/>
                         <input type="password" id="pwd2" name="pwd2" value={pwd2} onChange={onChange}
-                            onInput={onInputPwd2} />
+                               onInput={onInputPwd2}/>
                         <p className="message">{pwd2Message}</p>
                     </div>
 
                     <div className="form-el">
-                        <label htmlFor="name">이름</label> <br />
+                        <label htmlFor="name">이름</label> <br/>
                         <input type="text" id="name" name="name" value={name} onChange={onChange}
-                            onInput={onInputName} />
+                               onInput={onInputName}/>
                         <p className="message">{nameMessage}</p>
                     </div>
 
                     <div className="form-el">
-                        <label htmlFor="tel">번호</label> <br />
+                        <label htmlFor="tel">번호</label> <br/>
                         <input type="text" id="tel" name="tel" value={tel} onChange={onChange}
-                            onInput={onInputTel} />
+                               onInput={onInputTel}/>
                         <p className="message">{telMessage}</p>
                     </div>
 
                     <div className="form-el">
-                        <label htmlFor="birth">생일</label> <br />
+                        <label htmlFor="birth">생일</label> <br/>
                         <input type="date" id="birth" name="birth" value={birth} onChange={onChange}
-                            onInput={onInputBirth} />
+                               onInput={onInputBirth}/>
                         <p className="message">{birthMessage}</p>
                     </div>
                 </div>
