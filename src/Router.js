@@ -8,12 +8,14 @@ import ReviewEditModal from "./Component/review/ReviewEditModal";
 import ReviewAddModal from "./Component/review/ReviewAddModal"
 import AlbemHome from "./Component/Ablem/AlbemHome";
 import Main from "./Component/main";
+import MyPage from "./Component/member/MyPage";
 
 class Router extends Component {
     render() {
         return (
             <Routes>
                 <Route exact path="/" element={<Main />} />
+                <Route path="/member/info" element={<MyPage/>}/>
                 <Route exact path="/moim/home" element={<Home />} />
                 <Route path="/somoim/home" element={<SomoimHome />} />
                 <Route path="/moim/albem" element={<AlbemHome />} />
