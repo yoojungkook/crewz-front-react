@@ -82,7 +82,7 @@ export default function App() {
           </Col>
         </Row>
         <Row style={{ background: '#f2f2f2', marginTop: "2%", borderRadius: '1rem' }} className="row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <div style={{ width: '32%', borderRadius: ".5rem", padding: '5%', margin: ' 5px 5px ',cursor: 'pointer' }}>
+          <div style={{ width: '32%', borderRadius: ".5rem", padding:   '5%', margin: ' 5px 5px ',cursor: 'pointer' }}>
             <Col>
               <Card.Img
                 style={{ padding: '10%' }}

@@ -9,12 +9,14 @@ import ReviewAddModal from "./Component/review/ReviewAddModal"
 import AlbemHome from "./Component/Ablem/AlbemHome";
 import Moim from "./Moim";
 import App from "./App";
-
+import Main from "./Component/main";
+import MyPage from "./Component/member/MyPage";
 
 class Router extends Component {
     render() {
         return (
             <Routes>
+
                 <Route path="/moim" element={<Moim />}>
                     <Route path="/moim/home" element={<Home />} />
                     <Route path="/moim/albem" element={<AlbemHome />} />
@@ -25,7 +27,9 @@ class Router extends Component {
                 </Route>
                 <Route exact path="/" element={<App />}></Route>
                 <Route path="/temp" element={<Temp />} />
-
+                <Route exact path="/" element={<Main />} />
+                <Route path="/member/info" element={<MyPage/>}/>
+                <Route path="/temp" element={<Temp />} />
 
             </Routes>
         )
