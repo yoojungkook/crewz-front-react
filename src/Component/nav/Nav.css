@@ -1,0 +1,20 @@
+#profile {
+    margin-left: 20px;
+    border-radius: 30px;
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+    background-image: url(/public/img/emptyprofile.png);
+    background-size: 30px;
+    background-position: center
+}
+
+#notification {
+    width: 30px;
+    height: 30px;
+    border: 0;
+    background-image: url(/public/img/bell.png);
+    background-repeat : no-repeat;
+    background-size : 30px;
+    background-position: center;
+}
