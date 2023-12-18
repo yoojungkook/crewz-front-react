@@ -4,16 +4,33 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Join from "./Join";
 import FindId from "./FindId";
+import FindPwd from "./FindPwd";
+
+;
 
 export default function Login({ show, handleClose }) {
     const [showSignUpModal, setShowSignUpModal] = useState(false);
-    const openSignUpModal = () => setShowSignUpModal(true);
+    const openSignUpModal = () => {
+        setShowSignUpModal(true)
+        handleClose();
+    };
     const closeSignUpModal = () => setShowSignUpModal(false);
 
+    //아이디 찾기
     const [showFindIdModal, setShowFindIdModal] = useState(false);
-    const openFindIdModal = () => setShowFindIdModal(true);
+    const openFindIdModal = () => {
+        setShowFindIdModal(true);
+        handleClose();
+    }
     const closeFindIdModal = () => setShowFindIdModal(false);
 
+    //비밀번호 찾기
+    const [showFindPwdModal, setShowFindPwdModal] = useState(false);
+    const openFindPwdModal = () => {
+        setShowFindPwdModal(true);
+        handleClose();
+    }
+    const closeFindPwdModal = () => setShowFindPwdModal(false);
 
     const [inputs, setInputs] = useState({ id: '', pwd: '' });
     const { id, pwd } = inputs;
@@ -64,14 +81,16 @@ export default function Login({ show, handleClose }) {
 
                 <Modal.Footer>
                     <Button variant="danger" onClick={signIn}>로그인</Button>
-
                     <a href="#" onClick={openSignUpModal}>회원가입</a>
-                    <a href="#" onClick={openFindIdModal}>아이디 찾기</a>
+                    <a href="#" onClick={openFindIdModal}>아이디찾기</a>
+                    <a href="#" onClick={openFindPwdModal}>비밀번호찾기</a>
                 </Modal.Footer>
+
             </Modal>
 
             <Join show={showSignUpModal} handleClose={closeSignUpModal} />
-            <FindId show={showFindIdModal} handleClose={closeFindIdModal} />
+            <FindId show={showFindIdModal} handleClose={closeFindIdModal}/>
+            <FindPwd show={showFindPwdModal} handleClose={closeFindPwdModal}/>
         </div>
     )
 }
