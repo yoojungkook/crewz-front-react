@@ -1,18 +1,23 @@
-import React, { useState } from 'react';
-import { Form, InputGroup, Button, Modal } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-export default function SomoimAdd() {
+import { useState } from 'react';
+import { Form, InputGroup } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
+import Modal from 'react-bootstrap/Modal';
+
+function SomoimEdit() {
     const [show, setShow] = useState(false);
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
     return (
-        <div>
-            <Button id="Add_btn" variant="warning" onClick={handleShow}>
-                ＋
+        <>
+            <Button className=" shadow" style={{ marginTop: '10px', width: '60px', height: '33px' }} variant="outline-danger" onClick={handleShow}>
+                수정
             </Button>
+
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>소모임 작성</Modal.Title>
+                    <Modal.Title>Modal heading</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <Form action="/somoim" method="post" encType="multipart/form-data">
@@ -58,24 +63,15 @@ export default function SomoimAdd() {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        닫기
+                        Close
                     </Button>
-                    <Link to=""><Button variant="primary" onClick={handleClose}>
-                        작성완료
-                    </Button></Link>
+                    <Button variant="primary" onClick={handleClose}>
+                        Save Changes
+                    </Button>
                 </Modal.Footer>
             </Modal>
-
-
-
-
-
-        </div>
+        </>
     );
 }
 
-
-
-
-
-
+export default SomoimEdit;

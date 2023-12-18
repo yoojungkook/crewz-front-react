@@ -2,13 +2,12 @@ import Carousel from 'react-bootstrap/Carousel';
 import Badge from 'react-bootstrap/Badge';
 import styled from 'styled-components';
 import "./moimcss.css";
-import { Button, Col, Row } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 
 
 const Textarea = styled.textarea`
   width: 100%;
-  height : 500px;
-  
+  min-height : 500px;
   font-size : 1.3rem;
   border:none; 
   outline:none;
@@ -50,31 +49,26 @@ export default function Home() {
                 </Carousel>
                 <br />
             </div>
-            <Row>
-                <Col xs={9}>
-                    <snap style={{ fontSize: '40px' }}>RooTrip </snap><Badge bg="primary">운동</Badge>
-                    <h4 style={{ color: '#a8a8a8' }}>여행객들은 여행객끼리 통한다! 여행객들 여기 다 모여라!</h4><br/>
-                </Col>
-                <Col xs={3} >
-                    {/* <Button
-                        variant="danger"
-                        size="lg"
-                        style={{ marginLeft: "15%", marginTop: "15%" }}
-                    >
-                        &nbsp;&nbsp;가입하기&nbsp;&nbsp;
-                    </Button> */}
-                </Col>
-            </Row>
+
+            <snap style={{ fontSize: '40px' }}>RooTrip </snap><Badge bg="primary">운동</Badge>
+            <h4 style={{ color: '#a8a8a8' }}>여행객들은 여행객끼리 통한다! 여행객들 여기 다 모여라!</h4><br />
+
             <div className="d-grid gap-2">
+                {/* 남이 만든 모임 */}
                 <Button variant="danger" size="lg">
                     가입 하기
                 </Button>
+                {/* 내가 만든 모임일 경우 */}
+                <Button variant="success" size="lg">
+                    수정하기
+                </Button>
+                {/* 이미 가입된 모임의 경우 */}
                 <Button variant="secondary" size="lg">
                     탈퇴 하기
                 </Button>
 
             </div>
-            <hr />
+            <hr /><br />
             <Textarea id="content">
                 {`저희 RooTrip은 여행을 좋아하는 사람들을 위한 크루로, 국내/국외의 여행지들을 방방곡곡 다니며  여행하는 목표입니다. 
 여러분들도 저희 크쿨에 가입하여 저희와 함께 여행해보아요!!

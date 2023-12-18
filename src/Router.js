@@ -1,4 +1,4 @@
-import {Component} from "react";
+import { Component } from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./Component/Moim/Home";
 import SomoimHome from "./Component/Somoim/SomoimHome";
@@ -7,20 +7,28 @@ import ReviewTest from "./Component/review/ReviewTest";
 import ReviewEditModal from "./Component/review/ReviewEditModal";
 import ReviewAddModal from "./Component/review/ReviewAddModal"
 import AlbemHome from "./Component/Ablem/AlbemHome";
+import Moim from "./Moim";
+import App from "./App";
 
-class Router extends Component{
-    render(){
-        return(
+
+class Router extends Component {
+    render() {
+        return (
             <Routes>
-                <Route exact path="/moim/home" element={<Home/>}/>
-                <Route path="/somoim/home" element={<SomoimHome/>}/>
-                <Route path="/moim/albem" element={<AlbemHome/>}/>
-                <Route path="/temp" element={<Temp/>}/>
-                <Route path="/review/ReviewTest" element={<ReviewTest/>}/>
-                <Route path="/review/ReviewAddModal" element={<ReviewAddModal/>}/>
-                <Route path="/review/ReviewEditModal" element={<ReviewEditModal/>}/>
+                <Route path="/moim" element={<Moim />}>
+                    <Route path="/moim/home" element={<Home />} />
+                    <Route path="/moim/albem" element={<AlbemHome />} />
+                    <Route path="/moim/somoim" element={<SomoimHome />} />
+                    <Route path="/moim/review/ReviewTest" element={<ReviewTest />} />
+                    <Route path="/moim/review/ReviewAddModal" element={<ReviewAddModal />} />
+                    <Route path="/moim/review/ReviewEditModal" element={<ReviewEditModal />} />
+                </Route>
+                <Route exact path="/" element={<App />}></Route>
+                <Route path="/temp" element={<Temp />} />
+
+
             </Routes>
         )
     }
-} 
+}
 export default Router;  
