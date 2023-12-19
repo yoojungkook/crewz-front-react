@@ -3,6 +3,8 @@ import Badge from 'react-bootstrap/Badge';
 import styled from 'styled-components';
 import "./moimcss.css";
 import { Button } from 'react-bootstrap';
+import MoimEdit from './moimEdit';
+
 
 
 const Textarea = styled.textarea`
@@ -59,9 +61,7 @@ export default function Home() {
                     가입 하기
                 </Button>
                 {/* 내가 만든 모임일 경우 */}
-                <Button variant="success" size="lg">
-                    수정하기
-                </Button>
+                <MoimEdit/>
                 {/* 이미 가입된 모임의 경우 */}
                 <Button variant="secondary" size="lg">
                     탈퇴 하기
