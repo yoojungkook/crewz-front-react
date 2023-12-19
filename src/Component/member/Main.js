@@ -4,6 +4,7 @@ import Footer from "../footer";
 import {Outlet} from "react-router-dom";
 import {Col, Row} from "react-bootstrap";
 import NavLogin from "../nav/NavLogin";
+import "./Main.css"
 
 export default function Main() {
     return (
@@ -12,22 +13,19 @@ export default function Main() {
             {/*    <Header/>*/}
             {/*    /!*<NavLogin/>*!/*/}
             {/*</div>*/}
-            <Row>
-                <Col>
+            <Row >
+                <Col xs={2}>
                     <div id="menu">
                         <Menu/>
                     </div>
                 </Col>
-                <Col>
+                <Col xs={10}>
                     <NavLogin/>
                     <div id="content">
                         <Outlet/>
                     </div>
                 </Col>
             </Row>
-            {/*<div id="footer">*/}
-            {/*    <Footer/>*/}
-            {/*</div>*/}
         </>
     )
 }
