@@ -28,7 +28,7 @@ const SearchButton = styled.button`
   border-radius: 4px;
   cursor: pointer;
 `;
-export default function App() {
+export default function MoimList() {
   const handleSearch = () => {
     // 검색 로직 추가
     console.log('검색 버튼이 클릭되었습니다.');
@@ -81,70 +81,61 @@ export default function App() {
             </SearchContainer>
           </Col>
         </Row>
-        <Row style={{ background: '#f2f2f2', marginTop: "2%", borderRadius: '1rem' }} className="row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-          <Link to="/moimlist" >
-            <div style={{ width: '100%', borderRadius: ".5rem", padding: '5%', margin: ' 5px 5px ', cursor: 'pointer' }}>
-              <Col>
-                <Card.Img
-                  style={{ padding: '10%' }}
-                  src="/img/trip.png"
-                />
-                <Card.Body style={{ textAlign: 'center' }}>
-                  <Card.Title style={{ paddingBottom: '1rem' }}>
-                    여행
-                  </Card.Title>
-                </Card.Body>
-              </Col>
-            </div>
-          </Link>
 
-          <Link to="/moimlist" >
-            <div style={{ width: '100%', borderRadius: ".5rem", padding: '5%', margin: ' 5px 5px ', cursor: 'pointer' }}>
-              <Col>
-                <Card.Img
-                  style={{ padding: '10%' }}
-                  src="/img/trip.png"
-                />
-                <Card.Body style={{ textAlign: 'center' }}>
-                  <Card.Title style={{ paddingBottom: '1rem' }}>
-                    여행
-                  </Card.Title>
-                </Card.Body>
-              </Col>
-            </div>
-          </Link>
 
-          <Link to="/moimlist" >
-            <div style={{ width: '100%', borderRadius: ".5rem", padding: '5%', margin: ' 5px 5px ', cursor: 'pointer' }}>
-              <Col>
-                <Card.Img
-                  style={{ padding: '10%' }}
-                  src="/img/excercise.png"
-                />
-                <Card.Body style={{ textAlign: 'center' }}>
-                  <Card.Title style={{ paddingBottom: '1rem' }}>
-                    여행
-                  </Card.Title>
-                </Card.Body>
-              </Col>
-            </div>
-          </Link>
 
-          <Link to="/moimlist" >
-            <div style={{ width: '100%', borderRadius: ".5rem", padding: '5%', margin: ' 5px 5px ', cursor: 'pointer' }}>
+        <Row style={{ background: '#f2f2f2', marginTop: "2%", borderRadius: '1rem', padding: '3%' }} className="row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+
+          <Link to="/moim/home" >
+            <div style={{ width: '100%', backgroundColor: 'white',borderRadius: ".5rem", padding: '5%', margin: ' 5px 5px ', cursor: 'pointer' }}>
               <Col>
-                <Card.Img
-                  style={{ padding: '10%' }}
-                  src="/img/book.png"
-                />
+                <Card className="shadow-sm">
+                  <Card.Img
+                    variant="top"
+                    src="https://picsum.photos/400/350"
+                  />
+                </Card>
+                <br />
                 <Card.Body style={{ textAlign: 'center' }}>
-                  <Card.Title style={{ paddingBottom: '1rem' }}>
-                    여행
-                  </Card.Title>
+                  <Card.Title style={{ fontSize: '1.6rem', paddingBottom: '.5rem' }}>RooTrip</Card.Title>
                 </Card.Body>
               </Col>
             </div>
           </Link>
+          <Link to="/moim/home" >
+            <div style={{ width: '100%', backgroundColor: 'white',borderRadius: ".5rem", padding: '5%', margin: ' 5px 5px ', cursor: 'pointer' }}>
+              <Col>
+                <Card className="shadow-sm">
+                  <Card.Img
+                    variant="top"
+                    src="https://picsum.photos/400/350"
+                  />
+                </Card>
+                <br />
+                <Card.Body style={{ textAlign: 'center' }}>
+                  <Card.Title style={{ fontSize: '1.6rem', paddingBottom: '.5rem' }}>RooTrip</Card.Title>
+                </Card.Body>
+              </Col>
+            </div>
+          </Link>
+          <Link to="/moim/home" >
+            <div style={{ width: '100%', backgroundColor: 'white',borderRadius: ".5rem", padding: '5%', margin: ' 5px 5px ', cursor: 'pointer' }}>
+              <Col>
+                <Card className="shadow-sm">
+                  <Card.Img
+                    variant="top"
+                    src="https://picsum.photos/400/350"
+                  />
+                </Card>
+                <br />
+                <Card.Body style={{ textAlign: 'center' }}>
+                  <Card.Title style={{ fontSize: '1.6rem', paddingBottom: '.5rem' }}>RooTrip</Card.Title>
+                </Card.Body>
+              </Col>
+            </div>
+          </Link>
+          
+
         </Row>
 
 
