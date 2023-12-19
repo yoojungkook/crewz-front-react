@@ -6,6 +6,7 @@ import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
+import './moimcss.css';
 
 
 function Example() {
@@ -32,27 +33,28 @@ function Example() {
     }
     const addMoim = (event) => {
         alert("들어옴" + catno2);
-        let fdata = new FormData();
-        let f1 = document.getElementById('f');
-        let f2 = document.getElementById('f2');
-        let f3 = document.getElementById('f3');
-        fdata.append('catno',catno2);
-        fdata.append('title', title);
-        fdata.append('info', info);
-        fdata.append('content', content);
-        fdata.append('mf', f1.files[0]);
-        fdata.append('mf', f2.files[0]);
-        fdata.append('mf', f3.files[0]);
-        axios.post('http://crewz.asuscomm.com/auth/moim/add',fdata,
-        { headers: { Authorization: token, "Content-Type": "multipart/form-data" } })
-        .then(function (res){
-            if(res.status === 200){
-                alert(res.data.dto.title + " 글이 추가되었습니다");
-                navigate('/moim/home/' + res.data.dto.no);
-            }else{
-                alert("에러" + res.status);
-            }
-        })
+        // let fdata = new FormData();
+        // let f1 = document.getElementById('f');
+        // let f2 = document.getElementById('f2');
+        // let f3 = document.getElementById('f3');
+        // fdata.append('catno',catno2);
+        // fdata.append('title', title);
+        // fdata.append('info', info);
+        // fdata.append('content', content);
+        // fdata.append('mf', f1.files[0]);
+        // fdata.append('mf', f2.files[0]);
+        // fdata.append('mf', f3.files[0]);
+        // axios.post('http://crewz.asuscomm.com/auth/moim/add',fdata,
+        // { headers: { Authorization: token, "Content-Type": "multipart/form-data" } })
+        // .then(function (res){
+        //     if(res.status === 200){
+        //         alert(res.data.dto.title + " 글이 추가되었습니다");
+        //         navigate('/moim/home/' + res.data.dto.no);
+        //     }else{
+        //         alert("에러" + res.status);
+        //     }
+        // })
+        setLgShow(false);
     }
 
     return (
@@ -71,48 +73,6 @@ function Example() {
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body className="text-center" style={{ padding: '50px' }}>
-                    {/* <Form.Group controlId="catno">
-                        <Form.Label className="fw-bold">어떤 모임인가요?</Form.Label><br/>
-                        <br />
-                        <Row>
-                            <Col>
-                                <Form.Check type="radio"
-                                    name="catno"
-                                    value="1"
-                                    id="exercise_select"
-                                    label="운동"
-                                    
-                                /></Col>
-                            <Col>
-                                <Form.Check
-                                    type="radio"
-                                    name="catno"
-                                    value="2"
-                                    id="reading_select"
-                                    label="독서"
-                                    
-                                /></Col>
-                            <Col>
-                                <Form.Check
-                                    type="radio"
-                                    name="catno"
-                                    value="3"
-                                    id="trip-select"
-                                    label="여행"
-                                    
-                                /></Col>
-                            <Col>
-                                <Form.Check
-                                    type="radio"
-                                    name="catno"
-                                    value="4"
-                                    id="other-select"
-                                    label="기타"
-                                    
-                                /></Col>
-                        </Row>
-                    </Form.Group><br/><br/> */}
-
                     <Row>
                         <ButtonGroup>
                             {radios.map((radio, idx) => (
@@ -121,11 +81,11 @@ function Example() {
                                         key={idx}
                                         id={`radio-${idx}`}
                                         type="radio"
-                                        variant={idx % 2 ? 'outline-success' : 'outline-danger'}
+                                        variant='outline-danger'
                                         name="radio"
                                         value={radio.value}
                                         checked={catno2 === radio.value}
-                                        style={{ width: '80%' }}
+                                        style={{ width: '95%', height: '110%' }}
                                         onChange={(e) => setCatno(e.currentTarget.value)}
                                     >
                                         {radio.name}
@@ -145,7 +105,7 @@ function Example() {
                     <br /><br />
 
                     <span className="fw-bold">하고 싶은 말을 적어주세요!</span><br />
-                    <input className="input" name="content" as="textarea" value={content} style={{ height: '200px' }} placeholder="Describe yourself here..." onChange={onChange} />
+                    <textarea className="input" name="content" value={content} style={{ height: '300px' }} placeholder="Describe yourself here..." onChange={onChange} />
                     <br /><br />
 
                     <span className="fw-bold">모임을 보여주세요!!</span><br />
@@ -153,6 +113,7 @@ function Example() {
                     <br /><br />
 
                     <input className="input" name="f2" type="file" value={f2} onChange={onChange}/>
+                    <br /><br />
 
                     <input className="input" name="f3" type="file" value={f3} onChange={onChange}/>
 

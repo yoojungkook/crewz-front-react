@@ -1,4 +1,5 @@
 import { Card, Col, Container, Row } from "react-bootstrap";
+import AlbemAdd from "./AlbemAdd";
 
 export default function AlbemHome() {
     return (
@@ -82,11 +83,9 @@ export default function AlbemHome() {
                         </Card.Body>
                     </Col>
                 </div>
-                <div style={{ width: '31%', border: '5px dashed black', borderRadius: ".5rem", fontSize: "1000%", padding: '5% 10.5%', margin: ' 5px 5px ' }}>
-                    <Col>
-                        +
-                    </Col>
-                </div>
+
+                
+                <AlbemAdd/>
 
 
 
