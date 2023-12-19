@@ -45,13 +45,16 @@ export default function Login({ show, handleClose }) {
     }
 
     const signIn = () => {
-        axios.post('http://crewz.asuscomm.com/api/member/api/member/login', {}, { params: { id: id, pwd: pwd } })
+        axios.post('http://crewz.asuscomm.com/api/member/login', {}, { params: { id: id, pwd: pwd } })
             .then(function (res) {
                 if (res.status === 200) {
                     if (res.data.flag) {
-                        alert("로그인에 성공하였습니다.");
-                        sessionStorage.setItem("loginId", id);
-                        navigate("/");
+                        handleClose();
+                        localStorage.setItem("loginId", id);
+                        localStorage.setItem("token", res.data.token);
+
+                        navigate('/');
+                        window.location.reload();
                     } else {
                         alert("로그인에 실패하였습니다.");
                     }
