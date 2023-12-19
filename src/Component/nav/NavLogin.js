@@ -26,11 +26,11 @@ export default function NavLogin() {
                     <Nav>
                         <Nav.Link id="notification" href="#"/>
                         <NavDropdown id="profile">
-                            <NavDropdown.Item href="/member/info">마이페이지</NavDropdown.Item>
+                            <NavDropdown.Item href="/member/mypage">마이페이지</NavDropdown.Item>
                             <NavDropdown.Item href="/member/message">메세지함</NavDropdown.Item>
-                            <NavDropdown.Item href="/member/crew">나의모임</NavDropdown.Item>
-                            <NavDropdown.Item href="/member/crew/like">찜한모임</NavDropdown.Item>
-                            <NavDropdown.Item href="/member/crew/partin">참가모임</NavDropdown.Item>
+                            <NavDropdown.Item href="/member/mycrew">나의모임</NavDropdown.Item>
+                            <NavDropdown.Item href="/member/mycrew/like">찜한모임</NavDropdown.Item>
+                            <NavDropdown.Item href="/member/mycrew/partin">참가모임</NavDropdown.Item>
                             <NavDropdown.Item href="/member/review">리뷰관리</NavDropdown.Item>
                             <NavDropdown.Divider/>
                             <NavDropdown.Item href="#" onClick={logoutHandler}>로그아웃</NavDropdown.Item>
