@@ -2,6 +2,7 @@
 //프로필사진
 //내정보
 import {Button, Form} from "react-bootstrap";
+import Menu from "./Menu";
 
 export default function MyPage() {
     // const token = sessionStorage.getItem('token');
@@ -32,38 +33,49 @@ export default function MyPage() {
 
     return (
         <div>
-            {/*이름, 아이디, 비밀번호, 생일, 전화번호*/}
-            <Form>
-                <table>
-                    <tr>
-                        <th>이름</th>
-                        <td><Form.Control type="text" name="name" value="크루즈" readOnly={true}/></td>
-                    </tr>
-                    <tr>
-                        <th>아이디</th>
-                        <td><Form.Control type="text" name="id" value="crewz" readOnly={true}/></td>
-                    </tr>
-                    <tr>
-                        <th>비밀번호</th>
-                        <td>
-                            <Form.Control type="password" name="pwd" value="12345" readOnly={true}/>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <td><Form.Control type="password" name="pwd2" placeholder="변경할 비밀번호를 입력해 주세요."/></td>
-                    </tr>
-                    <tr>
-                        <th>생일</th>
-                        <td><Form.Control type="date" name="birth" value="2023-12-18" readOnly={true}/></td>
-                    </tr>
-                    <tr>
-                        <th>전화번호</th>
-                        <td><Form.Control type="text" name="tel" value="01012345678"/></td>
-                        <td><Button variant="danger" type="submit">변경</Button></td>
-                    </tr>
-                </table>
-            </Form>
+            {/*<div>*/}
+            {/*    <ul><li>회원정보</li></ul>*/}
+            {/*    <ul><li>메세지함</li></ul>*/}
+            {/*    <ul><li>나의모임</li></ul>*/}
+            {/*    <ul><li>찜한모임</li></ul>*/}
+            {/*    <ul><li>참가모임</li></ul>*/}
+            {/*    <ul><li>리뷰관리</li></ul>*/}
+            {/*</div>*/}
+            <Menu/>
+            <div>
+                {/*이름, 아이디, 비밀번호, 생일, 전화번호*/}
+                <Form>
+                    <table>
+                        <tr>
+                            <th>이름</th>
+                            <td><Form.Control type="text" name="name" value="크루즈" readOnly={true}/></td>
+                        </tr>
+                        <tr>
+                            <th>아이디</th>
+                            <td><Form.Control type="text" name="id" value="crewz" readOnly={true}/></td>
+                        </tr>
+                        <tr>
+                            <th>비밀번호</th>
+                            <td>
+                                <Form.Control type="password" name="pwd" value="12345" readOnly={true}/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><Form.Control type="password" name="pwd2" placeholder="변경할 비밀번호를 입력해 주세요."/></td>
+                        </tr>
+                        <tr>
+                            <th>생일</th>
+                            <td><Form.Control type="date" name="birth" value="2023-12-18" readOnly={true}/></td>
+                        </tr>
+                        <tr>
+                            <th>전화번호</th>
+                            <td><Form.Control type="text" name="tel" value="01012345678"/></td>
+                            <td><Button variant="danger" type="submit">변경</Button></td>
+                        </tr>
+                    </table>
+                </Form>
+            </div>
         </div>
     )
 }
