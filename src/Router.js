@@ -10,12 +10,18 @@ import AlbemHome from "./Component/Ablem/AlbemHome";
 import Moim from "./Moim";
 import App from "./App";
 import MyPage from "./Component/member/MyPage";
+import MyMessage from "./Component/member/MyMessage";
+import MyCrew from "./Component/member/MyCrew";
+import LikeCrew from "./Component/member/LikeCrew";
+import PartInCrew from "./Component/member/PartInCrew";
+import MyReview from "./Component/member/MyReview";
+import Main from "./Component/member/Main";
+import Menu from "./Component/member/Menu";
 
 class Router extends Component {
     render() {
         return (
             <Routes>
-
                 <Route path="/moim" element={<Moim />}>
                     <Route path="/moim/home" element={<Home />} />
                     <Route path="/moim/albem" element={<AlbemHome />} />
@@ -26,11 +32,19 @@ class Router extends Component {
                 </Route>
                 <Route exact path="/" element={<App />}></Route>
                 <Route path="/temp" element={<Temp />} />
-                <Route path="/member/info" element={<MyPage/>}/>
-                <Route path="/temp" element={<Temp />} />
+                <Route path="/menu" element={<Menu/>}/>
+
+                <Route path="/member" element={<Main/>}>
+                    <Route path="mypage" element={<MyPage/>}/>
+                    <Route path="message" element={<MyMessage/>}/>
+                    <Route path="mycrew" element={<MyCrew/>}/>
+                    <Route path="mycrew/like" element={<LikeCrew/>}/>
+                    <Route path="mycrew/partin" element={<PartInCrew/>}/>
+                    <Route path="review" element={<MyReview/>}/>
+                </Route>
 
             </Routes>
         )
     }
 }
-export default Router;  
+export default Router;
