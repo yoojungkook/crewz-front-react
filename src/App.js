@@ -56,8 +56,6 @@ export default function App() {
                     </ul>
                 </Col>
             </Row>
-
-
             <Container>
                 <Row className="justify-content-md-center">
                     <Col md="3">
@@ -131,6 +129,7 @@ export default function App() {
                             </Card.Body>
                         </Col>
                     </div>
+
 
                 </Row>
 
