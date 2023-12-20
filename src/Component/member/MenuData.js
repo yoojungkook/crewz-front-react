@@ -1,5 +1,10 @@
 export const MenuData = [
     {
+        title: "홈",
+        icon: <img src="/public/img/home-logo.png"/>,
+        link: "/"
+    },
+    {
         title: "마이페이지",
         icon: <img src="/public/img/home-logo.png"/>,
         link: "/member/mypage"
