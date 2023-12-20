@@ -110,7 +110,7 @@ export default function Header() {
           후기
         </Button>
       </Link>
-      <br /><hr style={{ width: "200%", position: "relative", right: "60%" }} />
+      <br /><hr/>
       
 
 
