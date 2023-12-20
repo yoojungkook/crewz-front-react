@@ -1,3 +1,32 @@
-#list{
-    border: 1px solid black;
+#crew-wrapper {
+    border: none;
+    display: flex;
+    width: 500px;
+    overflow: hidden;
+}
+
+#photo-wrapper{
+    flex:1;
+    overflow: hidden;
+}
+
+#photo-wrapper img{
+    width: 100%;
+    height: auto;
+}
+
+#crew-info {
+    align-items: center;
+}
+
+#crew-name {
+    font-size: 25px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+
+#crew-etc {
+    display: flex;
+    gap: 10px;
 }
