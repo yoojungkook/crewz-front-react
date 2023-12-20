@@ -7,6 +7,7 @@ import "./App.css"
 import NavLogout from "./Component/nav/NavLogout";
 import NavLogin from "./Component/nav/NavLogin";
 import axios from "axios";
+import ChatModal from "./Component/ChatModal";
 
 const SearchContainer = styled.div`
 `;
@@ -93,7 +94,9 @@ export default function App() {
                 <Row style={{background: '#f2f2f2', marginTop: "2%", borderRadius: '1rem'}}
                      className="row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     {radios.map((radio, idx) => (
-                        <div style={{
+                        <Link 
+                        to ="/moimlist"
+                        style={{
                             width: '32%',
                             borderRadius: ".5rem",
                             padding: '5%',
@@ -102,7 +105,7 @@ export default function App() {
                         }}>
                             <Col>
                                 <img
-                                    style={{padding: '10%'}}
+                                    style={{padding: '10%', width : '100%'}}
                                     // scr="http://crewz.asuscomm.com/api/category/img/car.png"
                                     src={`http://crewz.asuscomm.com/api/category/img/${radio.photo}`}
                                 />
@@ -112,7 +115,7 @@ export default function App() {
                                     </Card.Title>
                                 </Card.Body>
                             </Col>
-                        </div>
+                        </Link>
                     ))}
                 </Row>
 
@@ -126,6 +129,8 @@ export default function App() {
                     </>
                 ) : null}
             </Container>
+            <ChatModal/>
+
         </div>
     );
 }

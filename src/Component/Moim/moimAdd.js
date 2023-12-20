@@ -12,11 +12,10 @@ import './moimcss.css';
 
 function Example() {
     const navigate = useNavigate();
-    // const [liste] = liste({value: '', name: ''});
     const [radios, setRadios] = useState([]);
     const [lgShow, setLgShow] = useState(false);
-    const token = sessionStorage.getItem("token");
-    const [catno2, setCatno] = useState(''); // catno 상태 추가
+    const token = localStorage.getItem("token");
+    const [catno2, setCatno] = useState('0'); // catno 상태 추가
     const [dto, setDto] = useState({ memberid:'', title: '',info:'',content: '', f: '',f2:'',f3:'' });
     const { memberid ,title,info,content, f,f2,f3 } = dto;
 
@@ -29,21 +28,11 @@ function Example() {
                     value: category.no,
                     name: category.name
                 }));
-                setRadios(newRadios);
-                
+                setRadios(newRadios);   
             }
-            // console.log("radios :" +  radios[0].value + "/" + radios[1].value);
         })
     }, [])
 
-    // const radios = [];
-        // liste;
-        // { name: '여행', value: '1' },
-        // { name: '운동', value: '2' },
-        // { name: '독서', value: '3' },
-        // { name: '기타', value: '4' },
-
-    // ];
     const onChange = (e) => {
         const { name, value } = e.target;
         setDto({
@@ -51,29 +40,32 @@ function Example() {
             [name]: value
         })
     }
+    
     const addMoim = (event) => {
-        // alert("들어옴" + catno2);
         let fdata = new FormData();
-        let f1 = document.getElementById('f');
-        let f2 = document.getElementById('f2');
-        let f3 = document.getElementById('f3');
+        const f1 = document.getElementById("f");
+        const f2 = document.getElementById("f2");
+        const f3 = document.getElementById("f3");
         fdata.append('catno',catno2);
         fdata.append('title', title);
         fdata.append('info', info);
         fdata.append('content', content);
-        fdata.append('mf', f1.files[0]);
-        fdata.append('mf', f2.files[0]);
-        fdata.append('mf', f3.files[0]);
+        fdata.append('memberid', localStorage.getItem("loginId"));
+        fdata.append('photo', f1.files[0]);
+        fdata.append('photo', f2.files[0]);
+        fdata.append('photo', f3.files[0]);
         axios.post('http://crewz.asuscomm.com/auth/moim/add',fdata,
         { headers: { Authorization: token, "Content-Type": "multipart/form-data" } })
         .then(function (res){
             if(res.status === 200){
-                alert(res.data.dto.title + " 글이 추가되었습니다");
-                navigate('/moim/home/' + res.data.dto.no);
+                
+                // navigate('/moim/home/' + res.data.dto.no);
             }else{
                 alert("에러" + res.status);
             }
         })
+        alert(catno2 + " / " + title + " / " + info + " / " + content + " / " + "\n"
+        + f1.files[0] + " / " + f2.files[0] + " / " + f3.files[0]  );
         setLgShow(false);
     }
 
@@ -106,7 +98,7 @@ function Example() {
                                         value={radio.value}
                                         checked={catno2 === radio.value}
                                         style={{ width: '95%', height: '110%' }}
-                                        onChange={(e) => setCatno(e.currentTarget.value)}
+                                        onChange={(e) => setCatno(radio.value)}
                                     >
                                         {radio.name}
                                     </ToggleButton>
@@ -129,13 +121,13 @@ function Example() {
                     <br /><br />
 
                     <span className="fw-bold">모임을 보여주세요!!</span><br />
-                    <input className="input" name="f" type="file" value={f} onChange={onChange} />
+                    <input className="input" name="f" id="f" type="file" value={f} onChange={onChange} />
                     <br /><br />
 
-                    <input className="input" name="f2" type="file" value={f2} onChange={onChange}/>
+                    <input className="input" name="f2" id="f2" type="file" value={f2} onChange={onChange}/>
                     <br /><br />
 
-                    <input className="input" name="f3" type="file" value={f3} onChange={onChange}/>
+                    <input className="input" name="f3" id="f3" type="file" value={f3} onChange={onChange}/>
 
                 </Modal.Body>
                 <Modal.Footer>

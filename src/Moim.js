@@ -8,6 +8,7 @@ import Header from './Component/Header';
 import Footer from './Component/footer';
 import MoimAdd from './Component/Moim/moimAdd';
 import MainModal from './MainModal';
+import { Col, Row } from 'react-bootstrap';
 
 function Moim() {
   const [showMainModal, setShowMainModal] = useState(false);
@@ -16,26 +17,28 @@ function Moim() {
   const handleMainClose = () => setShowMainModal(false);
 
   return (
-    <Container className='App'>
-      <div>
-        <Header />
-      </div>
+    <>
+      <Row className="App" style={{padding : "0"}}>
+      <Col xs={1}></Col>
+        <Col xs={8}>
+        <div>
+          <Header />
+        </div>
 
-      <div id='content'>
-        <Outlet/>
-      </div>
-      <MoimAdd/>
-      <div>
-      <Button variant="primary" onClick={handleMainShow}>
-        Open Main Modal
-      </Button>
+        <div id='content'>
+          <Outlet />
+        </div>
+        <MoimAdd />   
+        <div>
+          <Footer />
+        </div>
+        </Col> 
+        <Col xs={3}>
+        <iframe src='https://chatdoge-test-6eg.pages.dev/' title="External Content" width="100%" height="500px"></iframe>
+        </Col>
+      </Row>
 
-      <MainModal show={showMainModal} handleClose={handleMainClose} />
-    </div> 
-      <div>
-        <Footer />
-      </div>
-    </Container>
+    </>
   );
 }
 
