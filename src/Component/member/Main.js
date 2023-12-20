@@ -19,12 +19,15 @@ export default function Main() {
                         <Menu/>
                     </div>
                 </Col>
-                <Col xs={10}>
+                <Col xs={9}>
+                    <div className="container-fluid d-flex justify-content-end">
                     <NavLogin/>
+                    </div>
                     <div id="content">
                         <Outlet/>
                     </div>
                 </Col>
+                <Col xs={1}></Col>
             </Row>
         </>
     )
