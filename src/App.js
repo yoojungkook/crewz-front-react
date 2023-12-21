@@ -129,7 +129,7 @@ export default function App() {
                     </>
                 ) : null}
             </Container>
-            <ChatModal/>
+            
 
         </div>
     );
