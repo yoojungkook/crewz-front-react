@@ -106,7 +106,7 @@ export default function App() {
                             <Col>
                                 <img
                                     style={{padding: '10%', width : '100%'}}
-                                    // scr="http://crewz.asuscomm.com/api/category/img/car.png"
+                                    
                                     src={`http://crewz.asuscomm.com/api/category/img/${radio.photo}`}
                                 />
                                 <Card.Body style={{textAlign: 'center'}}>
@@ -123,7 +123,7 @@ export default function App() {
                 {log ? (
                     <>
                         <div className="container-fluid fixed-bottom d-flex justify-content-end"
-                             style={{padding: '20px 200px'}}>
+                             style={{padding: '1% 7%',cursor : 'pointer'}}>
                             <MoimAdd/>
                         </div>
                     </>
