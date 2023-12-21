@@ -62,7 +62,7 @@ export default function Home() {
                 <br />
             </div>
 
-            <snap style={{ fontSize: '40px' }}>RooTrip </snap><Badge bg="primary">운동</Badge>
+            <snap style={{ fontSize: '40px' }}>RooTrip </snap><Badge style={{fontSize : '20px'}} bg="primary">운동</Badge>
             <h4 style={{ color: '#a8a8a8' }}>여행객들은 여행객끼리 통한다! 여행객들 여기 다 모여라!</h4><br />
 
             <div className="d-grid gap-2">

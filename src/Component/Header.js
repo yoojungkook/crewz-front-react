@@ -92,7 +92,7 @@ export default function Header() {
           사진첩
         </Button>
       </Link>
-      <Link to="/temp">
+      <Link to="/moim/board">
         <Button
           variant={selectedButton === '게시판' ? 'danger' : 'outline-danger'}
           className={`menubar`}
