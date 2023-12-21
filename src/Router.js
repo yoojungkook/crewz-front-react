@@ -17,6 +17,7 @@ import PartInCrew from "./Component/member/PartInCrew";
 import MyReview from "./Component/member/MyReview";
 import Main from "./Component/member/Main";
 import Menu from "./Component/member/Menu";
+import DeleteAcc from "./Component/member/DeleteAcc";
 
 class Router extends Component {
     render() {
@@ -41,6 +42,7 @@ class Router extends Component {
                     <Route path="mycrew/like" element={<LikeCrew/>}/>
                     <Route path="mycrew/partin" element={<PartInCrew/>}/>
                     <Route path="review" element={<MyReview/>}/>
+                    <Route path="delete" element={<DeleteAcc/>}/>
                 </Route>
 
             </Routes>

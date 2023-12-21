@@ -35,5 +35,10 @@ export const MenuData = [
         title: "리뷰관리",
         icon: <i className="bi bi-card-text"></i>,
         link: "/member/review"
+    },
+    {
+        title: "회원탈퇴",
+        icon: <i className="bi bi-ban"></i>,
+        link: "/member/delete"
     }
 ]
