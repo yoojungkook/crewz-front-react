@@ -1,51 +1,54 @@
-//가장 왼편에는 수직 네비바
-//프로필사진
-//내정보
-import {Button, Form} from "react-bootstrap";
-import Menu from "./Menu";
+import {Button, Form, Image} from "react-bootstrap";
+import React from "react";
+import "./MyPage.css"
+import axios from "axios";
 
 export default function MyPage() {
-    // const token = sessionStorage.getItem('token');
-    // const [dto, setDto] = useState({});
-    //
-    // useEffect(() => {
-    //     axios.get('http://localhost:8081/auth/info', {headers: {Authorization: token}})
-    //         .then(function (res) {
-    //             if (res.status === 200) {
-    //                 if (res.data.flag) {
-    //                     setDto(res.data.m);
-    //                 } else {
-    //                     alert('회원 정보를 불러올 수 없습니다.');
-    //                 }
-    //             } else {
-    //                 alert('error:' + res.status);
-    //             }
-    //         })
-    // }, []);
+    const token = localStorage.getItem('token');
+    const id = localStorage.getItem("loginId");
 
-    // const onChange = (e) => {
-    //     const {name, value} = e.target;
-    //     setDto({
-    //         ...dto,
-    //         [name]: value
-    //     })
-    // }
+    const onChangeImg = e => {
+        const formData = new FormData();//파일 객체
+        const file = e.target.files[0];//선택된 파일은 e.target.files배열에 담긴다
+
+        if (file) {
+            formData.append('mf', file);//폼데이터에 전달할 값 추가
+            formData.append('id', id);
+        }
+        axios.put('http://crewz.asuscomm.com/auth/member/edit/profile', formData, {
+            headers: {
+                Authorization: token,
+                "Content-Type": "multipart/form-data"
+            }
+        })
+            .then(function (res) {
+                if (res.status === 200) {
+                    console.log("프로필 사진이 업로드 되었습니다.");
+                    window.location.reload();
+                } else {
+                    console.log("error:" + res.status);
+                }
+            });
+    };
+
+
 
     return (
         <div>
-            {/*<div>*/}
-            {/*    <ul><li>회원정보</li></ul>*/}
-            {/*    <ul><li>메세지함</li></ul>*/}
-            {/*    <ul><li>나의모임</li></ul>*/}
-            {/*    <ul><li>찜한모임</li></ul>*/}
-            {/*    <ul><li>참가모임</li></ul>*/}
-            {/*    <ul><li>리뷰관리</li></ul>*/}
-            {/*</div>*/}
-            <Menu/>
-            <div>
-                {/*이름, 아이디, 비밀번호, 생일, 전화번호*/}
+            <div className="wrapper">
+                <div id="profile-wrapper">
+                        <img src={'http://crewz.asuscomm.com/api/member/img?id='+id} id="profile" roundedCircle/>
+                </div>
+                <div id="profile-upload-wrapper">
+                    <label htmlFor="profile-upload" id="profile-upload-label">변경</label>
+                    <input type="file" id="profile-upload" name="mf" accept="image/jpg, image/jpeg, image/png"
+                           onChange={onChangeImg}/>
+                </div>
+            </div>
+
+            <div className="wrapper" id="table-wrapper">
                 <Form>
-                    <table>
+                    <table id="member-info">
                         <tr>
                             <th>이름</th>
                             <td><Form.Control type="text" name="name" value="크루즈" readOnly={true}/></td>
