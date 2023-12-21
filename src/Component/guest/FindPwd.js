@@ -6,7 +6,7 @@ import Join from "./Join";
 import Login from "./Login";
 import FindId from "./FindId";
 
-export default function FindPwd({show, handleClose}){
+export default function FindPwd({show, handleClose}) {
 
     const [inputs, setInputs] = useState({id: '', tel: ''});
     const {id, tel} = inputs;
@@ -22,9 +22,8 @@ export default function FindPwd({show, handleClose}){
         axios.post('http://crewz.asuscomm.com/api/member/find/pwd', {}, {params: {id: id, tel: tel}})
             .then(function (res) {
                 if (res.status === 200) {
-                    if (res.data.flag) {
-                        alert('비밀번호를 찾았습니다.');
-                        console.log('pwd' + res.data.pwd);
+                    if (res.data.result !== null) {
+                        alert('pwd' + res.data.result);
                     }
                 } else {
                     alert('error:' + res.status);
@@ -57,7 +56,6 @@ export default function FindPwd({show, handleClose}){
                     <Join/>
                     <Login/>
                     <FindId/>
-                    {/*<a href="#" onClick={openSignUpModal}>회원가입</a>*/}
                 </Modal.Footer>
             </Modal>
         </>
