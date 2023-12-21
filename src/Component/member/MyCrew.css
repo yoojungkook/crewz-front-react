@@ -1,32 +1,29 @@
 #crew-wrapper {
     border: none;
     display: flex;
-    width: 500px;
+    width: auto;
+    height: 200px;
     overflow: hidden;
 }
 
-#photo-wrapper{
-    flex:1;
+
+#photo-wrapper {
+    flex: 1;/*사진이 왼쪽에 위치하게 함*/
     overflow: hidden;
 }
 
-#photo-wrapper img{
+#photo-wrapper img {
     width: 100%;
     height: auto;
 }
 
 #crew-info {
     align-items: center;
+    height:100%;
 }
 
 #crew-name {
     font-size: 25px;
     font-weight: bold;
     margin-bottom: 10px;
-}
-
-
-#crew-etc {
-    display: flex;
-    gap: 10px;
 }
