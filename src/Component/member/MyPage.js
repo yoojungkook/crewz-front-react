@@ -1,5 +1,5 @@
 import {Button, Form, Image} from "react-bootstrap";
-import React from "react";
+import React, {useEffect, useState} from "react";
 import "./MyPage.css"
 import axios from "axios";
 
@@ -31,13 +31,31 @@ export default function MyPage() {
             });
     };
 
-
+    const [member, setMember] = useState({});
+    useEffect(() => {
+        axios.post("http://crewz.asuscomm.com/auth/member/info/" + id, {},{
+            headers: {
+                Authorization: token
+            }
+        })
+            .then(function (res) {
+                if (res.status === 200) {
+                    if (res.data.member !== null) {
+                        setMember(res.data.member);
+                    } else {
+                        console.log('회원 정보를 불러올 수 없습니다.');
+                    }
+                } else {
+                    alert('error:' + res.status);
+                }
+            })
+    }, []);
 
     return (
         <div>
             <div className="wrapper">
                 <div id="profile-wrapper">
-                        <img src={'http://crewz.asuscomm.com/api/member/img?id='+id} id="profile" roundedCircle/>
+                    <img src={'http://crewz.asuscomm.com/api/member/img?id=' + id} id="profile" roundedCircle/>
                 </div>
                 <div id="profile-upload-wrapper">
                     <label htmlFor="profile-upload" id="profile-upload-label">변경</label>
@@ -51,29 +69,33 @@ export default function MyPage() {
                     <table id="member-info">
                         <tr>
                             <th>이름</th>
-                            <td><Form.Control type="text" name="name" value="크루즈" readOnly={true}/></td>
+                            <td><Form.Control type="text" name="name" value={member.name} readOnly={true}/></td>
                         </tr>
                         <tr>
                             <th>아이디</th>
-                            <td><Form.Control type="text" name="id" value="crewz" readOnly={true}/></td>
+                            <td><Form.Control type="text" name="id" value={member.id} readOnly={true}/></td>
                         </tr>
                         <tr>
                             <th>비밀번호</th>
                             <td>
-                                <Form.Control type="password" name="pwd" value="12345" readOnly={true}/>
+                                <Form.Control type="password" name="pwd" value={member.pwd} readOnly={true}/>
                             </td>
                         </tr>
                         <tr>
                             <th></th>
-                            <td><Form.Control type="password" name="pwd2" placeholder="변경할 비밀번호를 입력해 주세요."/></td>
+                            <td><Form.Control type="password" name="pwd2" placeholder="새로운 비밀번호"/></td>
+                        </tr>
+                        <tr>
+                            <th></th>
+                            <td><Form.Control type="password" name="pwd2" placeholder="새로운 비밀번호 확인"/></td>
                         </tr>
                         <tr>
                             <th>생일</th>
-                            <td><Form.Control type="date" name="birth" value="2023-12-18" readOnly={true}/></td>
+                            <td><Form.Control type="text" name="birth" value={member.birth} readOnly={true}/></td>
                         </tr>
                         <tr>
                             <th>전화번호</th>
-                            <td><Form.Control type="text" name="tel" value="01012345678"/></td>
+                            <td><Form.Control type="text" name="tel" value={member.tel}/></td>
                             <td><Button variant="danger" type="submit">변경</Button></td>
                         </tr>
                     </table>
