@@ -1,11 +1,11 @@
 import React, { useState , useEffect} from 'react';
 import { Container, Row, Col, Image, Button, Badge, Modal} from 'react-bootstrap';
-import ReviewAddModal from './ReviewAddModal';
-import ReviewEditModal from './ReviewEditModal';
-import CommentTest from '../comments/CommentTest.js'
+import ReviewAddModal from './ReviewAddModal.js';
+import ReviewEditModal from './ReviewEditModal.js';
+import Comment from '../comments/Comment.js'
 import axios from "axios";
 
-const ReviewTest = () => {
+const Review = () => {
 
 
   const [showAddModal, setAddShowModal] = useState(false);
@@ -24,7 +24,7 @@ const ReviewTest = () => {
 
   return (
     <Container>
-      <div className="fixed-bottom d-flex justify-content-end" style={{ paddingBottom: '20px' }}>
+      <div className="fixed-bottom d-flex justify-content-end" style={{ paddingBottom: '20px', paddingRight: '540px' }}>
         <div onClick={() => setAddShowModal(true)}>
           <img src="/img/plusbotton.png" style={{ width: '60px', height: '60px' }} />
         </div>
@@ -32,7 +32,7 @@ const ReviewTest = () => {
       </div>
 
       <Container className="mt-5">
-  <Row>
+  <Row style={{ marginRight: '-350px' , marginLeft:'100px' }}>
     <Col lg={8}>
       <article>
         <header className="mb-4 text-start">
@@ -56,7 +56,7 @@ const ReviewTest = () => {
       </article>
 
 
-      <CommentTest />
+      <Comment />
 
       <div className="text-end" style={{ marginTop: '-2rem' }}>
         <Button variant="outline-success" className="edit-review-btn" onClick={() => setShowEditModal(true)} style={{ marginRight: '10px' }}>글수정</Button>
@@ -84,4 +84,4 @@ const ReviewTest = () => {
   );
 };
 
-export default ReviewTest;
+export default Review;

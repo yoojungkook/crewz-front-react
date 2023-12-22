@@ -101,7 +101,7 @@ export default function Header() {
           게시판
         </Button>
       </Link>
-      <Link to="/moim/review/ReviewTest">
+      <Link to="/moim/review/Review">
         <Button
           variant={selectedButton === '후기' ? 'danger' : 'outline-danger'}
           className={`menubar`}
