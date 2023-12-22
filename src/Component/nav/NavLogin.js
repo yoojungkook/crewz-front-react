@@ -3,6 +3,7 @@ import "./Nav.css"
 import axios from "axios";
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
+import ChatModal from "../ChatModal";
 
 export default function NavLogin() {
     const [log, setLog] = useState(false);
@@ -37,7 +38,9 @@ export default function NavLogin() {
 
     return (
         <div>
+            
             <Navbar>
+            <ChatModal/>
                 <Navbar className="nav-login">
                     <Nav>
                         <Navbar.Collapse>

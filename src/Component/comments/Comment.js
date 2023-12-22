@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Card, Form, Button, OverlayTrigger, Tooltip, Image } from 'react-bootstrap';
 
-const CommentTest = () => {
+const Comment = () => {
   const [comment, setComment] = useState('');
   const [editMode, setEditMode] = useState(false);
   const [editedComment, setEditedComment] = useState('');
@@ -108,4 +108,4 @@ const CommentTest = () => {
   );
 };
 
-export default CommentTest;
+export default Comment;
