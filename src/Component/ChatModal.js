@@ -9,7 +9,7 @@ export default function ChatModal() {
 
   return (
     <>
-      <Button style={{width: '90%', height : '4%'}} onClick={() => setLgShow(true)}>무엇이든 물어보살</Button>
+      <img src="/img/chatbot.png" style={{width:'16%',marginRight:'9%',height : '4%',cursor : 'pointer'}} onClick={() => setLgShow(true)}/>
       
       <Modal
         size="lg"
