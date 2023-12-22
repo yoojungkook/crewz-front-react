@@ -25,6 +25,7 @@ export default function MyReview(){
                     </tbody>
                 </Table>
             </div>
+
         </>
     )
 }
