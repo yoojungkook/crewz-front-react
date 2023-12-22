@@ -16,21 +16,21 @@ function Example() {
     const [lgShow, setLgShow] = useState(false);
     const token = localStorage.getItem("token");
     const [catno2, setCatno] = useState('0'); // catno 상태 추가
-    const [dto, setDto] = useState({ memberid:'', title: '',info:'',content: '', f: '',f2:'',f3:'' });
-    const { memberid ,title,info,content, f,f2,f3 } = dto;
+    const [dto, setDto] = useState({ memberid: '', title: '', info: '', content: '', f: '', f2: '', f3: '' });
+    const { memberid, title, info, content, f, f2, f3 } = dto;
 
     useEffect(() => {
         axios.get("http://crewz.asuscomm.com/api/category/list", {}, {})
-        .then(function(res) {
-            if(res.status === 200) {
-                console.log(res.data.list);
-                const newRadios = res.data.list.map(category => ({
-                    value: category.no,
-                    name: category.name
-                }));
-                setRadios(newRadios);   
-            }
-        })
+            .then(function (res) {
+                if (res.status === 200) {
+                    console.log(res.data.list);
+                    const newRadios = res.data.list.map(category => ({
+                        value: category.no,
+                        name: category.name
+                    }));
+                    setRadios(newRadios);
+                }
+            })
     }, [])
 
     const onChange = (e) => {
@@ -40,13 +40,13 @@ function Example() {
             [name]: value
         })
     }
-    
+
     const addMoim = (event) => {
         let fdata = new FormData();
         const f1 = document.getElementById("f");
         const f2 = document.getElementById("f2");
         const f3 = document.getElementById("f3");
-        fdata.append('catno',catno2);
+        fdata.append('catno', catno2);
         fdata.append('title', title);
         fdata.append('info', info);
         fdata.append('content', content);
@@ -54,24 +54,28 @@ function Example() {
         fdata.append('photo', f1.files[0]);
         fdata.append('photo', f2.files[0]);
         fdata.append('photo', f3.files[0]);
-        axios.post('http://crewz.asuscomm.com/auth/moim/add',fdata,
-        { headers: { Authorization: token, "Content-Type": "multipart/form-data" } })
-        .then(function (res){
-            if(res.status === 200){
-                
-                // navigate('/moim/home/' + res.data.dto.no);
-            }else{
-                alert("에러" + res.status);
-            }
-        })
+        axios.post('http://crewz.asuscomm.com/auth/moim/add', fdata,
+            { headers: { Authorization: token, "Content-Type": "multipart/form-data" } })
+            .then(function (res) {
+                if (res.status === 200) {
+
+                    // navigate('/moim/home/' + res.data.dto.no);
+                } else {
+                    alert("에러" + res.status);
+                }
+            })
         alert(catno2 + " / " + title + " / " + info + " / " + content + " / " + "\n"
-        + f1.files[0] + " / " + f2.files[0] + " / " + f3.files[0]  );
+            + f1.files[0] + " / " + f2.files[0] + " / " + f3.files[0]);
         setLgShow(false);
     }
 
     return (
         <>
-            <Button size="lg" onClick={() => setLgShow(true)}>모임 생성 버튼</Button>
+            <img
+                src="img/plusbotton.png"
+                onClick={() => setLgShow(true)}
+                style={{width: '5%'}}
+            />
             <Modal
                 style={{ fontSize: '20px' }}
                 size="lg"
@@ -109,7 +113,7 @@ function Example() {
 
 
                     <span className="fw-bold">모임 이름을 적어주세요</span><br />
-                    <input className="input" name="title" type="text" value={title} placeholder="ex) Root Trip!" onChange={onChange}/>
+                    <input className="input" name="title" type="text" value={title} placeholder="ex) Root Trip!" onChange={onChange} />
                     <br /><br />
 
                     <span className="fw-bold">저희 모임은 이런 모음이에요!</span><br />
@@ -124,10 +128,10 @@ function Example() {
                     <input className="input" name="f" id="f" type="file" value={f} onChange={onChange} />
                     <br /><br />
 
-                    <input className="input" name="f2" id="f2" type="file" value={f2} onChange={onChange}/>
+                    <input className="input" name="f2" id="f2" type="file" value={f2} onChange={onChange} />
                     <br /><br />
 
-                    <input className="input" name="f3" id="f3" type="file" value={f3} onChange={onChange}/>
+                    <input className="input" name="f3" id="f3" type="file" value={f3} onChange={onChange} />
 
                 </Modal.Body>
                 <Modal.Footer>

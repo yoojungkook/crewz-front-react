@@ -9,21 +9,15 @@ export default function ChatModal() {
 
   return (
     <>
-      <Button onClick={() => setLgShow(true)}>챗 도지</Button>
+      <img src="/img/chatbot.png" style={{width:'16%',marginRight:'9%',height : '4%',cursor : 'pointer'}} onClick={() => setLgShow(true)}/>
       
       <Modal
-        
+        size="lg"
         show={lgShow}
         onHide={() => setLgShow(false)}
-        
         aria-labelledby="example-modal-sizes-title-lg"
       >
-        <Modal.Header closeButton>
-          <Modal.Title id="example-modal-sizes-title-lg">
-            챗도지 상담사
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body><iframe src='https://chatdoge-test-6eg.pages.dev/' title="External Content" width="100%" height="500px"></iframe></Modal.Body>
+        <Modal.Body><iframe src='https://chatdoge-test-6eg.pages.dev/' title="External Content" width="100%" height="700px"></iframe></Modal.Body>
       </Modal>
     </>
   );

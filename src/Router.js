@@ -12,6 +12,9 @@ import App from "./App";
 import Main from "./Component/main";
 import MyPage from "./Component/member/MyPage";
 import MoimList from "./MoimList";
+import Board from "./Component/Board/Board";
+import BoardEdit from "./Component/Board/BoardEdit";
+import BoardDetail from "./Component/Board/BoardDetail";
 
 class Router extends Component {
     render() {
@@ -23,6 +26,10 @@ class Router extends Component {
                     <Route path="/moim/albem" element={<AlbemHome />} />
                     <Route path="/moim/somoim" element={<SomoimHome />} />
                     <Route path="/moim/review/Review" element={<Review />} />
+                    <Route path="/moim/board" element={<Board/>}/>
+                    <Route path="/moim/board/edit" element={<BoardEdit/>}/>
+                    <Route path="/moim/board/detail" element={<BoardDetail/>}/>
+                    <Route path="/moim/review/ReviewTest" element={<ReviewTest />} />
                     <Route path="/moim/review/ReviewAddModal" element={<ReviewAddModal />} />
                     <Route path="/moim/review/ReviewEditModal" element={<ReviewEditModal />} />
                 </Route>
