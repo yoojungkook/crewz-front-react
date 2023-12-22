@@ -12,7 +12,6 @@ import App from "./App";
 import MyPage from "./Component/member/MyPage";
 import MyMessage from "./Component/member/MyMessage";
 import MyCrew from "./Component/member/MyCrew";
-import LikeCrew from "./Component/member/LikeCrew";
 import PartInCrew from "./Component/member/PartInCrew";
 import MyReview from "./Component/member/MyReview";
 import Main from "./Component/member/Main";
@@ -48,20 +47,13 @@ class Router extends Component {
                     <Route path="mypage" element={<MyPage/>}/>
                     <Route path="message" element={<MyMessage/>}/>
                     <Route path="mycrew" element={<MyCrew/>}/>
-                    <Route path="mycrew/like" element={<LikeCrew/>}/>
                     <Route path="mycrew/partin" element={<PartInCrew/>}/>
                     <Route path="review" element={<MyReview/>}/>
                     <Route path="delete" element={<DeleteAcc/>}/>
                 </Route>
-
-                <Route exact path="/" element={<Main />} />
-                <Route path="/member/info" element={<MyPage />} />
-                <Route path="/temp" element={<Temp />} />
 
             </Routes>
         )
     }
 }
 export default Router;
-
-

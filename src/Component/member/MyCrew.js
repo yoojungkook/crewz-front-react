@@ -21,8 +21,8 @@ export default function MyCrew() {
                         </div>
                     </Col>
                 </Row>
-                <hr/>
             </div>
+            <hr/>
         </>
     )
 }

@@ -3,11 +3,14 @@ import "./MyCrew.css"
 import Modal from "react-bootstrap/Modal";
 import {useState} from "react";
 
-export default function PartInCrew(){
+export default function PartInCrew() {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-    return(
+    const handleSubmit = () => {//todo 리뷰 작성
+
+    }
+    return (
         <>
             <br/>
             <div id="crew-wrapper">
@@ -25,7 +28,7 @@ export default function PartInCrew(){
                             </div>
                             <span>참여일자</span>
                             <div className="container-fluid d-flex justify-content-end">
-                                <Button variant="danger" onClick={handleShow}>리뷰 등록</Button>
+                                <Button variant="danger" onClick={handleShow}>리뷰 작성</Button>
                             </div>
                         </div>
                     </Col>
@@ -58,7 +61,7 @@ export default function PartInCrew(){
                     </Form>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button type="submit" variant="danger" onClick={handleClose}>
+                    <Button type="submit" variant="danger" onClick={handleSubmit}>
                         작성
                     </Button>
                 </Modal.Footer>

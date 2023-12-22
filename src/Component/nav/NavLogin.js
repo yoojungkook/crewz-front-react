@@ -1,16 +1,32 @@
-import {Nav, Navbar, NavDropdown} from "react-bootstrap";
+import {Image, Nav, Navbar, NavDropdown} from "react-bootstrap";
 import "./Nav.css"
 import axios from "axios";
-import {useState} from "react";
+import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import ChatModal from "../ChatModal";
 
 export default function NavLogin() {
     const [log, setLog] = useState(false);
     const navigate = useNavigate();
+
+    // useEffect(() => {
+    //     const profile = document.getElementById("profile");
+    //     profile.style.backgroundImage = "url(http://crewz.asuscomm.com/api/member/img?id=" + localStorage.getItem("loginId") + ")";
+    //     // profile.style.back
+    // }, []);
+
+    const profile = (
+        <Image
+            src={'http://crewz.asuscomm.com/api/member/img?id=' + localStorage.getItem("loginId")}
+            alt="profile"
+            roundedCircle
+            style={{width: '30px'}}
+        />
+    )
+
     const logoutHandler = () => {
-        axios.post("http://crewz.asuscomm.com/api/member/logout", {}, {params: {"id" : localStorage.getItem("loginId")}})
-            .then(function(res) {
+        axios.post("http://crewz.asuscomm.com/api/member/logout", {}, {params: {"id": localStorage.getItem("loginId")}})
+            .then(function (res) {
                 localStorage.removeItem("loginId");
                 localStorage.removeItem("token");
 
@@ -27,8 +43,9 @@ export default function NavLogin() {
             <ChatModal/>
                 <Navbar className="nav-login">
                     <Nav>
+                        <Navbar.Collapse>
                         <Nav.Link id="notification" href="#"/>
-                        <NavDropdown id="profile">
+                        <NavDropdown title={profile} id="profile">
                             <NavDropdown.Item href="/member/mypage">마이페이지</NavDropdown.Item>
                             <NavDropdown.Item href="/member/message">메세지함</NavDropdown.Item>
                             <NavDropdown.Item href="/member/mycrew">나의모임</NavDropdown.Item>
@@ -38,6 +55,7 @@ export default function NavLogin() {
                             <NavDropdown.Divider/>
                             <NavDropdown.Item href="#" onClick={logoutHandler}>로그아웃</NavDropdown.Item>
                         </NavDropdown>
+                        </Navbar.Collapse>
                     </Nav>
                 </Navbar>
             </Navbar>

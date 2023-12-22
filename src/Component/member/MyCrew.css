@@ -9,12 +9,14 @@
 
 #photo-wrapper {
     flex: 1;/*사진이 왼쪽에 위치하게 함*/
+    height: 200px;
+    width:auto;
     overflow: hidden;
 }
 
 #photo-wrapper img {
     width: 100%;
-    height: auto;
+    height: 100%;
 }
 
 #crew-info {
