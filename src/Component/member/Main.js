@@ -1,6 +1,4 @@
-import Header from "./Header";
 import Menu from "./Menu";
-import Footer from "../footer";
 import {Outlet} from "react-router-dom";
 import {Col, Row} from "react-bootstrap";
 import NavLogin from "../nav/NavLogin";

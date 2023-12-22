@@ -22,11 +22,6 @@ export const MenuData = [
         link: "/member/mycrew"
     },
     {
-        title: "관심모임",
-        icon: <i className="bi bi-heart"></i>,
-        link: "/member/mycrew/like"
-    },
-    {
         title: "참가모임",
         icon: <i className="bi bi-geo"></i>,
         link: "/member/mycrew/partin"
