@@ -1,0 +1,40 @@
+.wrapper {
+    border: 1px solid #f1f1f1;
+    margin: 15px;
+    padding: 0;
+}
+
+#table-wrapper {
+    padding: 5px;
+}
+
+#profile-wrapper {
+    width: 216px;
+    height: 204px;
+    border-radius: 70%;
+    overflow: hidden;
+    margin: auto;
+    border: 1px solid black;
+}
+
+#profile-upload-wrapper {
+    text-align: center;
+}
+
+#profile-upload {
+    display: none;
+    padding: 10px;
+}
+
+#profile {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    margin: 0 0 0 0;
+}
+
+#member-info {
+    width: 100%;
+}
+
+
