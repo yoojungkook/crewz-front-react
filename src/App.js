@@ -6,6 +6,8 @@ import MoimAdd from './Component/Moim/moimAdd';
 import "./App.css"
 import NavLogout from "./Component/nav/NavLogout";
 import NavLogin from "./Component/nav/NavLogin";
+import axios from "axios";
+import ChatModal from "./Component/ChatModal";
 
 const SearchContainer = styled.div`
 `;
@@ -36,6 +38,25 @@ export default function App() {
         console.log('검색 버튼이 클릭되었습니다.');
     };
 
+    const [radios, setRadios] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://crewz.asuscomm.com/api/category/list", {}, {})
+        .then(function(res) {
+            if(res.status === 200) {
+                console.log(res.data.list);
+                const newRadios = res.data.list.map(category => ({
+                    value: category.no,
+                    name: category.name,
+                    photo: category.photo
+                }));
+                setRadios(newRadios);
+                
+            }
+            // console.log("radios :" +  radios[0].value + "/" + radios[1].value);
+        })
+    }, [])
+
     const [log, setLog] = useState(false);
 
     useEffect(() => {
@@ -56,8 +77,6 @@ export default function App() {
                     </ul>
                 </Col>
             </Row>
-
-
             <Container>
                 <Row className="justify-content-md-center">
                     <Col md="3">
@@ -74,76 +93,44 @@ export default function App() {
                 </Row>
                 <Row style={{background: '#f2f2f2', marginTop: "2%", borderRadius: '1rem'}}
                      className="row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <div style={{
-                        width: '32%',
-                        borderRadius: ".5rem",
-                        padding: '5%',
-                        margin: ' 5px 5px ',
-                        cursor: 'pointer'
-                    }}>
-                        <Col>
-                            <Card.Img
-                                style={{padding: '10%'}}
-                                src="/img/trip.png"
-                            />
-                            <Card.Body style={{textAlign: 'center'}}>
-                                <Card.Title style={{paddingBottom: '1rem'}}>
-                                    여행
-                                </Card.Title>
-                            </Card.Body>
-                        </Col>
-                    </div>
-                    <div style={{
-                        width: '32%',
-                        borderRadius: ".5rem",
-                        padding: '5%',
-                        margin: ' 5px 5px ',
-                        cursor: 'pointer'
-                    }}>
-                        <Col>
-                            <Card.Img
-                                style={{padding: '10%'}}
-                                src="/img/excercise.png"
-                            />
-                            <Card.Body style={{textAlign: 'center'}}>
-                                <Card.Title style={{paddingBottom: '1rem'}}>
-                                    운동
-                                </Card.Title>
-                            </Card.Body>
-                        </Col>
-                    </div>
-                    <div style={{
-                        width: '32%',
-                        borderRadius: ".5rem",
-                        padding: '5%',
-                        margin: ' 5px 5px ',
-                        cursor: 'pointer'
-                    }}>
-                        <Col>
-                            <Card.Img
-                                style={{padding: '10%'}}
-                                src="/img/book.png"
-                            />
-                            <Card.Body style={{textAlign: 'center'}}>
-                                <Card.Title style={{paddingBottom: '1rem'}}>
-                                    독서
-                                </Card.Title>
-                            </Card.Body>
-                        </Col>
-                    </div>
-
+                    {radios.map((radio, idx) => (
+                        <Link 
+                        to ="/moimlist"
+                        style={{
+                            width: '32%',
+                            borderRadius: ".5rem",
+                            padding: '5%',
+                            margin: ' 5px 5px ',
+                            cursor: 'pointer'
+                        }}>
+                            <Col>
+                                <img
+                                    style={{padding: '10%', width : '100%'}}
+                                    
+                                    src={`http://crewz.asuscomm.com/api/category/img/${radio.photo}`}
+                                />
+                                <Card.Body style={{textAlign: 'center'}}>
+                                    <Card.Title style={{paddingBottom: '1rem'}}>
+                                        {radio.name}
+                                    </Card.Title>
+                                </Card.Body>
+                            </Col>
+                        </Link>
+                    ))}
                 </Row>
 
 
                 {log ? (
                     <>
                         <div className="container-fluid fixed-bottom d-flex justify-content-end"
-                             style={{padding: '20px 200px'}}>
+                             style={{padding: '1% 7%',cursor : 'pointer'}}>
                             <MoimAdd/>
                         </div>
                     </>
                 ) : null}
             </Container>
+            
+
         </div>
     );
 }

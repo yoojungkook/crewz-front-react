@@ -2,12 +2,11 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import Header from './Component/Header';
 import Footer from './Component/footer';
 import MoimAdd from './Component/Moim/moimAdd';
-import MainModal from './MainModal';
+import { Col, Row } from 'react-bootstrap';
+import ChatModal from './Component/ChatModal';
 
 function Moim() {
   const [showMainModal, setShowMainModal] = useState(false);
@@ -16,26 +15,31 @@ function Moim() {
   const handleMainClose = () => setShowMainModal(false);
 
   return (
-    <Container className='App'>
-      <div>
-        <Header />
-      </div>
+    <>
+      <Row className="App" style={{padding : "0"}}>
+      <Col xs={2}>
 
-      <div id='content'>
-        <Outlet/>
-      </div>
-      <MoimAdd/>
-      <div>
-      <Button variant="primary" onClick={handleMainShow}>
-        Open Main Modal
-      </Button>
+      </Col>
+        <Col xs={8}>
+        <div>
+          <Header />
+        </div>
 
-      <MainModal show={showMainModal} handleClose={handleMainClose} />
-    </div> 
-      <div>
-        <Footer />
-      </div>
-    </Container>
+        <div id='content'>
+          <Outlet />
+        </div>
+        
+        <div>
+          <Footer />
+        </div>
+        </Col> 
+        <Col xs={2}>
+        <br/><br/><br/><br/>
+          <ChatModal/>
+        </Col>
+      </Row>
+
+    </>
   );
 }
 

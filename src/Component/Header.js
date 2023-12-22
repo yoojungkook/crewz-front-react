@@ -92,7 +92,7 @@ export default function Header() {
           사진첩
         </Button>
       </Link>
-      <Link to="/temp">
+      <Link to="/moim/board">
         <Button
           variant={selectedButton === '게시판' ? 'danger' : 'outline-danger'}
           className={`menubar`}
@@ -110,7 +110,7 @@ export default function Header() {
           후기
         </Button>
       </Link>
-      <br /><hr style={{ width: "200%", position: "relative", right: "60%" }} />
+      <br /><hr/>
       
 
 
