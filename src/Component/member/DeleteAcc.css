@@ -1,0 +1,26 @@
+#main{
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.row{
+    border: 1px solid #f1f1f1;
+    margin: 15px;
+}
+
+.info{
+    font-weight: bold;
+}
+
+.check{
+    color: red;
+    font-weight: bold;
+}
+
+#checkbox{
+    font-weight: bold;
+}
+
+.list-group-item {
+    margin-bottom: 5px;
+}
