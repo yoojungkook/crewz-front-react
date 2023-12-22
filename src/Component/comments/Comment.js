@@ -6,6 +6,18 @@ const Comment = () => {
   const [editMode, setEditMode] = useState(false);
   const [editedComment, setEditedComment] = useState('');
   
+  const handleCommentDeleteButtonClick = () => {
+    const confirmDelete = window.confirm("댓글을 삭제하시겠습니까?");
+    
+    if (confirmDelete) {
+      // 여기에 삭제 로직을 추가하세요.
+      // 삭제 로직을 추가한 후, 필요에 따라 서버에 삭제 요청을 보내거나,
+      // 상태를 업데이트하여 화면에서 해당 항목을 제거할 수 있습니다.
+      console.log("댓글을 삭제합니다.");
+    } else {
+      console.log("댓글 삭제가 취소되었습니다.");
+    }
+  };
 
   const handleCommentSubmit = (e) => {
     e.preventDefault();
@@ -83,7 +95,8 @@ const Comment = () => {
                           </OverlayTrigger>
 
                           <OverlayTrigger placement="top" overlay={renderDelTooltip}>
-                            <Button variant='outline-danger' className="delete-comment-btn" style={{ padding: '2px 2px', marginTop: '-7px', border: 'none' }}>
+                            <Button variant='outline-danger' className="delete-comment-btn" style={{ padding: '2px 2px', marginTop: '-7px', border: 'none' }}
+                            onClick={() => handleCommentDeleteButtonClick()}>
                               <Image src="/img/delete_button.png" alt="delete" width="15" height="15" />
                             </Button>
                           </OverlayTrigger>
