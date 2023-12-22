@@ -1,41 +1,59 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Outlet } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
-import Container from 'react-bootstrap/Container';
 import Header from './Component/Header';
 import Footer from './Component/footer';
 import MoimAdd from './Component/Moim/moimAdd';
-import MainModal from './MainModal';
+import { Col, Row } from 'react-bootstrap';
+import ChatModal from './Component/ChatModal';
+import NavLogin from './Component/nav/NavLogin';
+import NavLogout from './Component/nav/NavLogout';
 
 function Moim() {
+  const [log, setLog] = useState(false);
+
+  useEffect(() => {
+    const LoginId = localStorage.getItem("loginId");
+    if (LoginId !== null) {
+      setLog(true);
+    }
+  }, []);
+
   const [showMainModal, setShowMainModal] = useState(false);
 
   const handleMainShow = () => setShowMainModal(true);
   const handleMainClose = () => setShowMainModal(false);
 
   return (
-    <Container className='App'>
-      <div>
-        <Header />
-      </div>
+    <>
+      <Row className="App" style={{ padding: "0" }}>
+        <Col xs={2}>
+          <br /><br />
+          
+        </Col>
+        <Col xs={8}>
+          <div>
+            <Header />
+          </div>
 
-      <div id='content'>
-        <Outlet/>
-      </div>
-      <MoimAdd/>
-      <div>
-      <Button variant="primary" onClick={handleMainShow}>
-        Open Main Modal
-      </Button>
+          <div id='content'>
+            <Outlet />
+          </div>
 
-      <MainModal show={showMainModal} handleClose={handleMainClose} />
-    </div> 
-      <div>
-        <Footer />
-      </div>
-    </Container>
+          <div>
+            <Footer />
+          </div>
+        </Col>
+        <Col xs={2}>
+          <div className="navbar-nav" style={{ paddingLeft: '34%', paddingTop: '10%' }}>
+            {log ? <NavLogin /> : <NavLogout />}
+          </div>
+
+        </Col>
+      </Row>
+
+    </>
   );
 }
 

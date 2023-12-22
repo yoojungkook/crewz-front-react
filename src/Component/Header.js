@@ -1,5 +1,5 @@
 import Row from "react-bootstrap/esm/Row";
-import logoImg from "./logo.png";
+import logoImg from "./home-logo.png";
 import Col from "react-bootstrap/esm/Col";
 import React, { useState } from 'react';
 import styled from 'styled-components';
@@ -9,23 +9,29 @@ import { Button } from "react-bootstrap";
 const SearchContainer = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom : 15px;
+  padding-top : 2.5%;
 `;
 
 const SearchInput = styled.input`
-  padding: 8px;
+  position : relative;
+  left : -40px;
+  padding-left : 15px;  
+  font-size : 1.3rem;
   width : 90%;
+  height : 60px;
   border: 2px solid red;
   outline: none;
 `;
 
 const SearchButton = styled.button`
-  padding: 8px;
+  font-size : 1.4rem;
   background-color: red;
+  height : 55px;
+  width : 9%;
   color: white;
   border: none;
   border-radius: 4px;
-  margin-left: 8px;
+  margin-left: 2%;
   cursor: pointer;
 `;
 
@@ -43,26 +49,22 @@ export default function Header() {
 
   return (
     <div>
-      <Row style={{ padding: '5px' }}>
+      
+      <Row style={{ margin:'1% 0' }}>
 
-        <Col xs={2}>
-          <img style={{ width: '150px', borderRadius: '.3rem' }} src={logoImg} alt="로고사진" />
+        <Col xs={3}>
+          <img 
+          style={{ width: '80%', borderRadius: '.5rem' }} 
+          src={logoImg} alt="로고사진" 
+          />
 
         </Col>
 
-        <Col style={{ paddingTop: '5px' }} xs={10}>
+        <Col style={{ paddingTop: '5px' }} xs={9}>
           <SearchContainer >
             <SearchInput type="text" placeholder="검색어를 입력하세요" />
-            <SearchButton onClick={handleSearch}>검색</SearchButton>
-
+            <SearchButton onClick={handleSearch}>검 색</SearchButton>
           </SearchContainer>
-          <span style={{ position: "relative", left: "75%" }} >
-
-            <Link to="/temp">로그아웃</Link>&nbsp;&nbsp;
-            <Link to="/">홈으로</Link>&nbsp;&nbsp;
-            <Link to="/temp">내 정보</Link>&nbsp;&nbsp;
-          </span>
-
         </Col>
       </Row>
       <Link to="/moim/home">
@@ -92,7 +94,7 @@ export default function Header() {
           사진첩
         </Button>
       </Link>
-      <Link to="/temp">
+      <Link to="/moim/board">
         <Button
           variant={selectedButton === '게시판' ? 'danger' : 'outline-danger'}
           className={`menubar`}
@@ -101,7 +103,7 @@ export default function Header() {
           게시판
         </Button>
       </Link>
-      <Link to="/moim/review/ReviewTest">
+      <Link to="/moim/review/Review">
         <Button
           variant={selectedButton === '후기' ? 'danger' : 'outline-danger'}
           className={`menubar`}
@@ -110,7 +112,7 @@ export default function Header() {
           후기
         </Button>
       </Link>
-      <br /><hr style={{ width: "200%", position: "relative", right: "60%" }} />
+      <br /><hr/>
       
 
 

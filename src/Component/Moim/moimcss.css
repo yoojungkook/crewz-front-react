@@ -22,7 +22,13 @@
 }
 
 .d-block{
-    margin-left : 26%;
+    margin-left : 27%;
     height :400px;
     width : 600px;
+}
+
+.input{
+    width : 100%;
+    margin-top : 1%;
+    height : 50px;
 }
