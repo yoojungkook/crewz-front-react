@@ -2,21 +2,12 @@ import {Button} from "react-bootstrap";
 import axios from "axios";
 import "./DeleteAcc.css"
 import 'bootstrap-icons/font/bootstrap-icons.css';
+import {useNavigate} from "react-router-dom";
 
 export default function DeleteAcc() {
+    const navigate = useNavigate();
     const onClick = () => {
-        // if (window.confirm('정말로 크루즈를 탈퇴하시겠습니까?')) {
-        //     axios.delete()
-        //         .then(function (res) {
-        //             if (res.status === 200) {
-        //                 alert('탈퇴가 완료되었습니다.');
-        //             } else {
-        //                 console.log('error:' + res.status);
-        //             }
-        //         })
-        // } else {
-        //     console.log('이전 페이지로 돌아갑니다.');
-        // }
+
         const id = localStorage.getItem("loginId");
         const token = localStorage.getItem("token");
 
@@ -39,8 +30,10 @@ export default function DeleteAcc() {
             axios.delete('http://crewz.asuscomm.com/auth/member/del?id=' + id, {headers: {Authorization: token}},)
                 .then(function (res) {
                     if (res.status === 200) {
-                        if (res.msg !== null) {
-                            alert(res.msg);
+                        if (res.data.msg !== null) {
+                            alert(res.data.msg);
+                            localStorage.clear();
+                            navigate('/');
                         } else {
                             console.log("탈퇴에 실패하였습니다.");
                         }
