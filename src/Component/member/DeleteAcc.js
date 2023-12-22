@@ -49,17 +49,17 @@ export default function DeleteAcc() {
             <p id="main">탈퇴 안내</p>
 
 
-            <div className="row">
+            <div className="del-wrapper">
                 <h6 className="info"><i className="bi bi-check-lg"></i> 아이디 재사용 및 복구 불가</h6><br/>
                 <p>탈퇴한 아이디는 재사용 및 복구가 불가능합니다.</p>
             </div>
 
-            <div className="row">
+            <div className="del-wrapper">
                 <h6 className="info"><i className="bi bi-check-lg"></i> 탈퇴 후 개인 정보 삭제</h6><br/>
                 <p>탈퇴 시 계정의 모든 정보는 삭제됩니다.</p>
             </div>
 
-            <div className="row">
+            <div className="del-wrapper">
                 <h6 className="info"><i className="bi bi-check-lg"></i> 탈퇴하는 이유를 선택해주세요.</h6><br/>
                 <ul className="list-reason">
                     <li className="list-group-item">
