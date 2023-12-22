@@ -29,7 +29,7 @@ class Router extends Component {
                     <Route path="/moim/board" element={<Board/>}/>
                     <Route path="/moim/board/edit" element={<BoardEdit/>}/>
                     <Route path="/moim/board/detail" element={<BoardDetail/>}/>
-                    <Route path="/moim/review/ReviewTest" element={<ReviewTest />} />
+                    {/* <Route path="/moim/review/ReviewTest" element={<ReviewTest />} /> */}
                     <Route path="/moim/review/ReviewAddModal" element={<ReviewAddModal />} />
                     <Route path="/moim/review/ReviewEditModal" element={<ReviewEditModal />} />
                 </Route>
