@@ -1,0 +1,5 @@
+#footer {
+    display: flex;
+    flex-direction: column; /*요소들 나열 방향*/
+    align-items: flex-start; /*콘텐츠 아이템의 내부 상하관계 정렬*/
+}
