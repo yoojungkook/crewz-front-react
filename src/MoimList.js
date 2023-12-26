@@ -63,9 +63,9 @@ export default function MoimList() {
         </Row>
         <Row className="justify-content-md-center">
           <Col md="8">
-            <SearchContainer >
+            <SearchContainer className="d-flex">
               <SearchInput type="text" placeholder="검색어를 입력하세요" />
-              <SearchButton onClick={handleSearch}>검색</SearchButton>
+              <SearchButton onClick={handleSearch} style={{"margin-left":"auto"}}>검색</SearchButton>
             </SearchContainer>
           </Col>
         </Row>

@@ -85,9 +85,9 @@ export default function App() {
                 </Row>
                 <Row className="justify-content-md-center">
                     <Col md="8">
-                        <SearchContainer>
+                        <SearchContainer className="d-flex">
                             <SearchInput type="text" placeholder="검색어를 입력하세요" />
-                            <SearchButton onClick={handleSearch}>검색</SearchButton>
+                            <SearchButton onClick={handleSearch} style={{"margin-left":"auto"}}>검색</SearchButton>
                         </SearchContainer>
                     </Col>
                 </Row>
@@ -107,7 +107,7 @@ export default function App() {
 
                             <div style={{ width: '95%', backgroundColor: 'white', borderRadius: ".5rem", padding: '5%', cursor: 'pointer' }}>
                                 <Col>
-                                    <Card className=""style={{ border: 'none' }}>
+                                    <Card className="" style={{ border: 'none' }}>
                                         <Card.Img
                                             variant="top"
                                             src={`http://crewz.asuscomm.com/api/category/img/${radio.photo}`}
