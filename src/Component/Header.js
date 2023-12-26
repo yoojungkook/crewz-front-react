@@ -1,9 +1,9 @@
 import Row from "react-bootstrap/esm/Row";
 import logoImg from "./home-logo.png";
 import Col from "react-bootstrap/esm/Col";
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Link, Router } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Button } from "react-bootstrap";
 
 const SearchContainer = styled.div`
@@ -47,6 +47,20 @@ export default function Header() {
     setSelectedButton(label);
   }
 
+  const [radios, setRadios] = useState(0);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+        
+    let name = params.get("no");
+
+    // alert(name);
+
+    setRadios(name);
+  })
+
   return (
     <div>
       
@@ -67,7 +81,7 @@ export default function Header() {
           </SearchContainer>
         </Col>
       </Row>
-      <Link to="/moim/home">
+      <Link to={"/moim/home?no=" + radios}>
         <Button
           variant={selectedButton === '홈' ? 'danger' : 'outline-danger'}
           className={`menubar`}
@@ -76,7 +90,7 @@ export default function Header() {
           홈
         </Button>
       </Link>
-      <Link to="/moim/somoim">
+      <Link to={"/moim/somoim?no=" + radios}>
         <Button
           variant={selectedButton === '소모임' ? 'danger' : 'outline-danger'}
           className={`menubar`}
@@ -85,7 +99,7 @@ export default function Header() {
           소모임
         </Button>
       </Link>
-      <Link to="/moim/albem">
+      <Link to={"/moim/albem?no=" + radios}>
         <Button
           variant={selectedButton === '사진첩' ? 'danger' : 'outline-danger'}
           className={`menubar`}
@@ -94,7 +108,7 @@ export default function Header() {
           사진첩
         </Button>
       </Link>
-      <Link to="/moim/board">
+      <Link to={"/moim/board?no=" + radios}>
         <Button
           variant={selectedButton === '게시판' ? 'danger' : 'outline-danger'}
           className={`menubar`}
@@ -103,7 +117,7 @@ export default function Header() {
           게시판
         </Button>
       </Link>
-      <Link to="/moim/review/Review">
+      <Link to={"/moim/review?no=" + radios}>
         <Button
           variant={selectedButton === '후기' ? 'danger' : 'outline-danger'}
           className={`menubar`}
