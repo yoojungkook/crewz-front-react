@@ -1,5 +1,5 @@
 import {Button, Modal} from "react-bootstrap";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 
 export default function Join({show, handleClose}) {
@@ -143,6 +143,18 @@ export default function Join({show, handleClose}) {
                 }
             });
     }
+
+    useEffect(() => {
+        if (!show) {
+            setInputs({ id: '', pwd: '', pwd2: '', name: '', tel: '', birth: '' });
+            setIdMessage('');
+            setCheckPwdMessage('');
+            setCheckPwd2Message('');
+            setNameMessage('');
+            setBirthMessage('');
+            setTelMessage('');
+        }
+    }, [show]);
 
     return (
         <Modal show={show} onHide={handleClose} className="">
