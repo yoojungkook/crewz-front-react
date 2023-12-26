@@ -70,8 +70,8 @@ export default function App() {
         <div className="App">
             <br></br>
             <Row>
-                <Col xs={11}></Col>
-                <Col xs={1}>
+                <Col xs={10}></Col>
+                <Col xs={2}>
                     <ul className="navbar-nav">
                         {log ? <NavLogin /> : <NavLogout />}
                     </ul>
