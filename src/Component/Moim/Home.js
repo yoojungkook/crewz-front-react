@@ -20,7 +20,7 @@ const Textarea = styled.textarea`
 
 export default function Home() {
     const location = useLocation();
-
+    const token = localStorage.getItem("token");
     const [info, setInfo] = useState([]);
     const [isJoined, setIsJoined] = useState(false);
     const [isOwner, setIsOwner] = useState(false);
@@ -41,10 +41,10 @@ export default function Home() {
                 });
 
                 if (joinRes.status === 200 && joinRes.data.dto !== null) {
-                    alert("참가자");
+                    
                     setIsJoined(true);
                     if (infoRes.data.dto.memberid === localStorage.getItem("loginId")) {
-                        alert("만든사람");
+                        
                         setIsOwner(true);
                     }
                 }
@@ -54,9 +54,48 @@ export default function Home() {
         };
 
         fetchData();
-    
+
     }, [location.search]);
 
+    const joinMoim = () => {
+        const params = new URLSearchParams(location.search);
+        const name2 = params.get("no");
+        
+        const loginId = localStorage.getItem("loginId");
+        
+        axios.get("http://crewz.asuscomm.com/auth/moim/join/" + name2+ "/" + loginId ,
+            { headers: { Authorization: token } })
+            .then(function (res) {
+                if (res.status === 200) {
+                    alert("가입 되었습니다.");
+                    window.location.reload();
+                } else {
+
+                }
+            });
+    }
+    const outMoim = () => {
+        const params = new URLSearchParams(location.search);
+        const name2 = params.get("no");
+        
+        const loginId = localStorage.getItem("loginId");
+        alert(loginId);
+        axios.delete("http://crewz.asuscomm.com/auth/moim/out/" + name2+ "/" + loginId ,
+            { headers: { Authorization: token } })
+            .then(function (res) {
+                if (res.status === 200) {
+                    if(res.data.flag){
+                        alert("성공적으로 삭제");
+                    }else{
+                        alert("삭제 실패");
+                    }
+                    
+                    window.location.reload();
+                } else {
+                    alert(res.status);
+                }
+            });
+    }
     return (
         <div>
             <div class="img_box">
@@ -65,7 +104,7 @@ export default function Home() {
                         <img
                             className="d-block"
                             src={"http://crewz.asuscomm.com/api/moim/img/" + info.no + "/1"}
-                            alt="First slide"
+                            // onError="this.src='https://picsum.photos/350/350'"
                         />
 
                     </Carousel.Item>
@@ -75,7 +114,8 @@ export default function Home() {
 
                             className="d-block"
                             src={"http://crewz.asuscomm.com/api/moim/img/" + info.no + "/2"}
-                            alt="Second slide"
+                            alt="https://picsum.photos/350/350"
+                            // onError="this.src='https://picsum.photos/350/350'"
                         />
 
                     </Carousel.Item>
@@ -84,7 +124,8 @@ export default function Home() {
                         <img
                             className="d-block"
                             src={"http://crewz.asuscomm.com/api/moim/img/" + info.no + "/3"}
-                            alt="Third slide"
+                            alt="https://picsum.photos/350/350"
+                            //onError="this.src='https://picsum.photos/350/350'"
                         />
 
                     </Carousel.Item>
@@ -98,13 +139,13 @@ export default function Home() {
 
             <div className="d-grid gap-2">
                 {isJoined && !isOwner && (
-                    <Button variant="secondary" size="lg">
+                    <Button onClick={outMoim} variant="secondary" size="lg">
                         탈퇴 하기
                     </Button>
                 )}
-                {isOwner && <MoimEdit />}
+                {isOwner && <MoimEdit Moimno={info.no}/>}
                 {!isJoined && !isOwner && (
-                    <Button variant="danger" size="lg">
+                    <Button onClick={joinMoim} variant="danger" size="lg">
                         가입 하기
                     </Button>
                 )}
@@ -112,8 +153,6 @@ export default function Home() {
             <hr /><br />
             <Textarea id="content" value={info.content}>
             </Textarea>
-            
-
         </div>
 
     );

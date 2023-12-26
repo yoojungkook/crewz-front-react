@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Col, Form, Row } from 'react-bootstrap';
 import ButtonGroup from 'react-bootstrap/ButtonGroup';
 import ToggleButton from 'react-bootstrap/ToggleButton';
@@ -8,19 +8,20 @@ import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 import './moimcss.css';
 
-export default function MoimEdit(){
-    
+export default function MoimEdit({ Moimno }) {
+    const navigate = useNavigate();
     const [lgShow, setLgShow] = useState(false);
-    const token = sessionStorage.getItem("token");
+    const token = localStorage.getItem("token");
     const [catno2, setCatno] = useState('1'); // catno 상태 추가
-    const [dto, setDto] = useState({ memberid:'', title: '',info:'',content: '', f: '',f2:'',f3:'' });
-    const { memberid ,title,info,content, f,f2,f3 } = dto;
+    const [dto, setDto] = useState({ no: '', memberid: '', title: '', info: '', content: '', photo1: '', photo2: '', photo3: '' });
+    const { no, memberid, title, info, content, photo1, photo2, photo3 } = dto;
+
 
     const radios = [
-        { name: '여행', value: '1' },
-        { name: '운동', value: '2' },
-        { name: '독서', value: '3' },
-        { name: '기타', value: '4' },
+        { name: '여행', value: '10' },
+        { name: '운동', value: '9' },
+        { name: '자동차', value: '11' },
+
 
     ];
     const onChange = (e) => {
@@ -30,35 +31,62 @@ export default function MoimEdit(){
             [name]: value
         })
     }
-    const addMoim = (event) => {
-        alert("들어옴" + catno2);
-        // let fdata = new FormData();
-        // let f1 = document.getElementById('f');
-        // let f2 = document.getElementById('f2');
-        // let f3 = document.getElementById('f3');
-        // fdata.append('catno',catno2);
-        // fdata.append('title', title);
-        // fdata.append('info', info);
-        // fdata.append('content', content);
-        // fdata.append('mf', f1.files[0]);
-        // fdata.append('mf', f2.files[0]);
-        // fdata.append('mf', f3.files[0]);
-        // axios.post('http://crewz.asuscomm.com/auth/moim/add',fdata,
-        // { headers: { Authorization: token, "Content-Type": "multipart/form-data" } })
-        // .then(function (res){
-        //     if(res.status === 200){
-        //         alert(res.data.dto.title + " 글이 추가되었습니다");
-        //         navigate('/moim/home/' + res.data.dto.no);
-        //     }else{
-        //         alert("에러" + res.status);
-        //     }
-        // })
+
+    useEffect(() => {
+        console.log("name: " + Moimno);
+        axios.get("http://crewz.asuscomm.com/api/moim/info/" + Moimno)
+            .then(function (res) {
+                if (res.status === 200) {
+                    if (res.data.flag) {
+
+                        const cat = res.data.dto.catno;
+                        setDto(res.data.dto);
+                        setCatno("11");
+                    } else {
+                        alert("모임정보 가져오기 실패");
+                    }
+                }
+            })
+    }, []);
+
+    const editMoim = () => {
+        const form = new FormData();
+        form.append('no', no);
+        form.append('catno', catno2);
+        form.append('title', title);
+        form.append('info', info);
+        form.append('content', content);
+
+        const f1 = document.getElementById('f');
+        const f2 = document.getElementById('f2');
+        const f3 = document.getElementById('f3');
+        form.append('photo1', f1.files[0]);
+        form.append('photo2', f2.files[0]);
+        form.append('photo3', f3.files[0]);
+
+        axios.put('http://crewz.asuscomm.com/auth/moim/edit', form, {
+            headers: { Authorization: token, 'Content-Type': 'multipart/form-data' },
+        })
+            .then(function (res) {
+                if (res.status === 200) {
+                    alert("수정성공");
+                    navigate(`/moim/home?no=${res.data.dto.no}`);
+                } else {
+                    alert(`에러 ${res.status}`);
+                }
+            })
+            .catch(function (error) {
+                console.error('에러 발생: ', error);
+            });
+
         setLgShow(false);
-    }
+    };
+
+
 
     return (
         <>
-            <Button id="edit_btn" variant="success" size="lg"onClick={() => setLgShow(true)}>수정하기</Button>
+            <Button id="edit_btn" variant="success" size="lg" onClick={() => setLgShow(true)}>수정하기</Button>
             <Modal
                 style={{ fontSize: '20px' }}
                 size="lg"
@@ -94,9 +122,9 @@ export default function MoimEdit(){
                         </ButtonGroup>
                     </Row><br /><br />
 
-
+                    <input type="hidden" name="no" defaultValue={no} />
                     <span className="fw-bold">모임 이름을 적어주세요</span><br />
-                    <input className="input" name="title" type="text" value={title} placeholder="ex) Root Trip!" onChange={onChange}/>
+                    <input className="input" name="title" type="text" value={title} placeholder="ex) Root Trip!" onChange={onChange} />
                     <br /><br />
 
                     <span className="fw-bold">저희 모임은 이런 모음이에요!</span><br />
@@ -108,13 +136,13 @@ export default function MoimEdit(){
                     <br /><br />
 
                     <span className="fw-bold">모임을 보여주세요!!</span><br />
-                    <input className="input" name="f" type="file" value={f} onChange={onChange} />
+                    <input className="input" id="f" type="file" onChange={onChange} />
                     <br /><br />
 
-                    <input className="input" name="f2" type="file" value={f2} onChange={onChange}/>
+                    <input className="input" id="f2" type="file" onChange={onChange} />
                     <br /><br />
 
-                    <input className="input" name="f3" type="file" value={f3} onChange={onChange}/>
+                    <input className="input" id="f3" type="file" onChange={onChange} />
 
                 </Modal.Body>
                 <Modal.Footer>
@@ -122,12 +150,12 @@ export default function MoimEdit(){
                         닫기
                     </Button>
 
-                    <Button variant="primary" onClick={addMoim}>
+                    <Button variant="primary" onClick={editMoim}>
                         작성완료
                     </Button>
                 </Modal.Footer>
             </Modal>
         </>
-    
+
     );
 }
