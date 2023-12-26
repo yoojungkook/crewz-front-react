@@ -1,10 +1,10 @@
 #profile {
     margin-left: 20px;
     border-radius: 30px;
-    border: 1px solid black;
+    border: 1px solid white;
     width: 30px;
     height: 30px;
-    background-image: url(/public/img/emptyprofile.png);
+    /*background-image: url(/public/img/emptyspace.png);*/
     background-size: 30px;
     background-position: center
 }
