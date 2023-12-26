@@ -137,6 +137,7 @@ export default function Join({show, handleClose}) {
             .then(function (res) {
                 if (res.status === 200) {
                     alert("크루즈에 오신 것을 환영합니다.");
+                    handleClose();
                 } else {
                     alert("error:" + res.status);
                 }
@@ -200,3 +201,5 @@ export default function Join({show, handleClose}) {
         </Modal>
     )
 }
+
+

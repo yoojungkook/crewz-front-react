@@ -9,8 +9,14 @@ import ReviewAddModal from "./Component/review/ReviewAddModal"
 import AlbemHome from "./Component/Ablem/AlbemHome";
 import Moim from "./Moim";
 import App from "./App";
-import Main from "./Component/main";
 import MyPage from "./Component/member/MyPage";
+import MyMessage from "./Component/member/MyMessage";
+import MyCrew from "./Component/member/MyCrew";
+import PartInCrew from "./Component/member/PartInCrew";
+import MyReview from "./Component/member/MyReview";
+import Main from "./Component/member/Main";
+import Menu from "./Component/member/Menu";
+import DeleteAcc from "./Component/member/DeleteAcc";
 import MoimList from "./MoimList";
 import Board from "./Component/Board/Board";
 import BoardEdit from "./Component/Board/BoardEdit";
@@ -35,12 +41,19 @@ class Router extends Component {
                 </Route>
                 <Route path="/moimlist" element={<MoimList />}></Route>
                 <Route path="/temp" element={<Temp />} />
-                <Route exact path="/" element={<Main />} />
-                <Route path="/member/info" element={<MyPage />} />
-                <Route path="/temp" element={<Temp />} />
+                <Route path="/menu" element={<Menu/>}/>
+
+                <Route path="/member" element={<Main/>}>
+                    <Route path="mypage" element={<MyPage/>}/>
+                    <Route path="message" element={<MyMessage/>}/>
+                    <Route path="mycrew" element={<MyCrew/>}/>
+                    <Route path="mycrew/partin" element={<PartInCrew/>}/>
+                    <Route path="review" element={<MyReview/>}/>
+                    <Route path="delete" element={<DeleteAcc/>}/>
+                </Route>
 
             </Routes>
         )
     }
 }
-export default Router;  
+export default Router;
