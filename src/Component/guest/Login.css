@@ -4,11 +4,46 @@
     align-items: flex-start; /*콘텐츠 아이템의 내부 상하관계 정렬*/
 }
 
-a {
+div a {
     color: black;
     text-decoration: none;
 }
 
-a:hover {
+div a:hover {
     text-decoration: underline;
+}
+
+.form-el input {
+    font-size: 15px;
+    color: #222222;
+    width: 300px;
+    border: none;
+    border-bottom: solid #aaaaaa 1px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    position: relative;
+    background: none;
+    z-index: 5;
+}
+
+.form-el input::placeholder {
+    color: #aaaaaa;
+}
+
+.form-el input:focus {
+    outline: none;
+}
+
+.form-el input:focus, input:valid {
+    font-size: 16px;
+    color: #666;
+    font-weight: bold;
+}
+
+.form-el input:focus, input:valid {
+    width: 100%;
+}
+
+#error-message {
+    color: red;
 }
