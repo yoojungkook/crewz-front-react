@@ -9,12 +9,20 @@
     background-position: center
 }
 
-#notification {
-    width: 30px;
-    height: 30px;
-    border: 0;
-    background-image: url(/public/img/bell.png);
-    background-repeat : no-repeat;
-    background-size : 30px;
-    background-position: center;
+/*#notification {*/
+/*    width: 30px;*/
+/*    height: 30px;*/
+/*    border: 0;*/
+/*    background-image: url(/public/img/bell.png);*/
+/*    background-repeat : no-repeat;*/
+/*    background-size : 30px;*/
+/*    background-position: center;*/
+/*}*/
+
+.dropdown-toggle::after {
+    display: none !important;
+}
+
+.navbar-expand .navbar-nav .dropdown-menu {
+    left: -120px;
 }
