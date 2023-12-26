@@ -83,19 +83,19 @@ export default function App() {
                         <img id="home_logo" src="/img/home-logo.png" alt="logo" />
                     </Col>
                 </Row>
-                <Row className="justify-content-md-center">
+                {/* <Row className="justify-content-md-center">
                     <Col md="8">
                         <SearchContainer>
                             <SearchInput type="text" placeholder="검색어를 입력하세요" />
                             <SearchButton onClick={handleSearch}>검색</SearchButton>
                         </SearchContainer>
                     </Col>
-                </Row>
+                </Row> */}
                 <Row style={{ background: '#f2f2f2', marginTop: "2%", borderRadius: '1rem' }}
                     className="row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     {radios.map((radio, idx) => (
                         <Link
-                            to={'/moimlist'}
+                            to={'/moimlist?category=' + radio.value}
                             style={{
                                 width: '32%',
                                 borderRadius: ".5rem",
