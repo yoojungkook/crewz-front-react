@@ -20,6 +20,18 @@ const Review = () => {
     setModalShow(true);
   };
 
+  const handleDeleteButtonClick = () => {
+    const confirmDelete = window.confirm("정말로 글을 삭제하시겠습니까?");
+    
+    if (confirmDelete) {
+      // 여기에 삭제 로직을 추가하세요.
+      // 삭제 로직을 추가한 후, 필요에 따라 서버에 삭제 요청을 보내거나,
+      // 상태를 업데이트하여 화면에서 해당 항목을 제거할 수 있습니다.
+      console.log("글을 삭제합니다.");
+    } else {
+      console.log("글 삭제가 취소되었습니다.");
+    }
+  };
 
 
   return (
@@ -62,7 +74,9 @@ const Review = () => {
         <div className="text-end" style={{ marginTop: '-2rem' }}>
           <Button variant="outline-success" className="edit-review-btn" onClick={() => setShowEditModal(true)} style={{ marginRight: '10px' }}>글수정</Button>
           <ReviewEditModal showEditModal={showEditModal} handleClose={() => setShowEditModal(false)} />
-          <Button variant="outline-danger" className="edit-delete-btn">글삭제</Button>
+
+          <Button variant="outline-danger" className="edit-delete-btn" onClick={() => handleDeleteButtonClick()} >글삭제</Button>
+          
         </div>
         <br />
         <br />
