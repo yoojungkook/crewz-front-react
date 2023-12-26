@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import MoimAdd from './Component/Moim/moimAdd';
 import "./App.css"
+import NavLogout from "./Component/nav/NavLogout";
+import NavLogin from "./Component/nav/NavLogin";
 
 const SearchContainer = styled.div`
 `;
@@ -44,24 +46,10 @@ export default function MoimList() {
     <div className="App">
       <br></br>
       <Row>
-        <Col xs={11}></Col>
-        <Col xs={1}>
+        <Col xs={10}></Col>
+        <Col xs={2}>
           <ul className="navbar-nav">
-            {/* 로그인 상태에 따라 다른 내용을 보여주도록 수정하세요 */}
-            {log ? (
-              <li className="nav-item">
-                <Link to="/">로그아웃</Link>
-              </li>
-            ) : (
-              <>
-                <li className="nav-item">
-                  <Link to="/login">로그인</Link>
-                </li>
-                <li className="nav-item">
-                  <Link to="/join">회원가입</Link>
-                </li>
-              </>
-            )}
+            {log ? <NavLogin /> : <NavLogout />}
           </ul>
         </Col>
       </Row>
