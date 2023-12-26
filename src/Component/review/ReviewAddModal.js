@@ -11,7 +11,7 @@ const ReviewAddModal = ({ showAddModal, handleClose, info }) => {
   const handleModalOpen = () => {
     console.log(info);
     // console.log("list 출력!")
-    axios.post('http://localhost/api/review/mylist', {}, {params: {moimno: info.moimno, memberid: info.memberid}})
+    axios.post('http://crewz.asuscomm.com/api/review/mylist', {}, {params: {moimno: info.moimno, memberid: info.memberid}})
     .then(function(res) {
       if(res.status === 200) {
         console.log(res.data.list);
@@ -54,7 +54,7 @@ const ReviewAddModal = ({ showAddModal, handleClose, info }) => {
       console.log(`${pair[0]}: ${pair[1]}`);
     }
 
-    axios.post("http://localhost/api/review/add", formData, {headers: {'Content-Type': 'multipart/form-data'}})
+    axios.post("http://crewz.asuscomm.com/api/review/add", formData, {headers: {'Content-Type': 'multipart/form-data'}})
     .then(function(res) {
       if(res.status === 200) {
         if(res.data.flag) {

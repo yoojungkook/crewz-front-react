@@ -32,7 +32,7 @@ const Review = () => {
     const params = new URLSearchParams(location.search);
     let no = params.get("no");
 
-    axios.get('http://localhost/api/review/list', { params: { "no": parseInt(no, 10) } })
+    axios.get('http://crewz.asuscomm.com/api/review/list', { params: { "no": parseInt(no, 10) } })
       .then(function (res) {
         if (res.status === 200) {
           console.log(res.data.list === null ? "yes" : "no");
@@ -72,7 +72,7 @@ const Review = () => {
       })
 
     if(localStorage.getItem("loginId") !== null) {
-      axios.post('http://localhost/api/review/mylist', {}, { params: { moimno: no, memberid: localStorage.getItem("loginId") } })
+      axios.post('http://crewz.asuscomm.com/api/review/mylist', {}, { params: { moimno: no, memberid: localStorage.getItem("loginId") } })
         .then(function (res) {
           if (res.status === 200) {
             console.log("null 여부: " + res.data.list === null ? "null" : "no");
@@ -109,7 +109,7 @@ const Review = () => {
             <article>
               <header className="mb-4 text-start">
                 <div className="d-flex align-items-start">
-                  <Image src={"http://localhost/api/member/img?id=" + item.memberid} roundedCircle alt="Profile picture" style={{ width: '50px', height: '50px' }} />
+                  <Image src={"http://crewz.asuscomm.com/api/member/img?id=" + item.memberid} roundedCircle alt="Profile picture" style={{ width: '50px', height: '50px' }} />
                   <h4 className="fw-bolder mb-1 ml-3" style={{ marginTop: '10px', marginLeft: '10px' }}>{item.memberid}</h4>
                 </div>
                 <h1 className="fw-bolder mb-1" style={{ marginTop: '10px' }}>{item.title}</h1>
@@ -120,9 +120,9 @@ const Review = () => {
               <section className="mb-5 text-start">
                 <p className="fs-5 mb-4">{item.content}</p>
                 <div id="wrp" style={{ overflowX: 'auto', whiteSpace: 'nowrap' }}>
-                  <Image src={`http://localhost/api/review/img/${item.moimno}/${item.somoimno}/${item.no}/${item.photo1}`} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo1)} />
-                  <Image src={`http://localhost/api/review/img/${item.moimno}/${item.somoimno}/${item.no}/${item.photo2}`} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo2)} />
-                  <Image src={`http://localhost/api/review/img/${item.moimno}/${item.somoimno}/${item.no}/${item.photo3}`} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo3)} />
+                  <Image src={`http://crewz.asuscomm.com/api/review/img/${item.moimno}/${item.somoimno}/${item.no}/${item.photo1}`} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo1)} />
+                  <Image src={`http://crewz.asuscomm.com/api/review/img/${item.moimno}/${item.somoimno}/${item.no}/${item.photo2}`} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo2)} />
+                  <Image src={`http://crewz.asuscomm.com/api/review/img/${item.moimno}/${item.somoimno}/${item.no}/${item.photo3}`} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo3)} />
                   {/* <img src={imageSrc(item, 1)} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo1)} />
                   <img src={imageSrc(item, 2)} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo2)} />
                   <img src={imageSrc(item, 3)} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo3)} /> */}

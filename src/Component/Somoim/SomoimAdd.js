@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Form, InputGroup, Button, Modal } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import './somoimcss.css';
 import axios from 'axios';
 
@@ -11,6 +11,16 @@ export default function SomoimAdd() {
     const token = localStorage.getItem('token');
     const[dto,setDto] = useState({memberid:'',title:'',content:'',jdate:'',loc_trip:'',loc:'',total:''});
     const {title,content,jdate,loc_trip,loc,total} = dto;
+
+    const location = useLocation();
+
+    const [no, setNo] = useState('');
+
+    useEffect(() => {
+        const params = new URLSearchParams(location.search);
+        let name = params.get("no");
+        setNo(name);
+    })
 
     const onChange = (e) => {
         const { name, value } = e.target;
@@ -29,14 +39,18 @@ export default function SomoimAdd() {
         fdata.append('jdate',jdate);
         // fdata.append('loc_trip',loc_trip);
         fdata.append('loc',loc);
-        fdata.append('moimno',38);
+        fdata.append('moimno', no);
         fdata.append('total',total);
         fdata.append('mf',f.files[0]);
         axios.post('http://crewz.asuscomm.com/auth/somoim/add',fdata,
         {headers : {Authorization: token,"Content-Type" : "multipart/form-data"}})
         .then(function(res){
             if(res.status === 200){
-                alert(res.data.msg + "소모임이 추가되었습니다.")
+                alert(res.data.msg + "소모임이 추가되었습니다.");
+
+                
+                
+                setShow(false);
             }else{
                 alert("에러" + res.status)
             }
