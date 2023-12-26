@@ -42,7 +42,7 @@ export default function SomoimAdd() {
         fdata.append('moimno', no);
         fdata.append('total',total);
         fdata.append('mf',f.files[0]);
-        axios.post('http://localhost/auth/somoim/add',fdata,
+        axios.post('http://crewz.asuscomm.com/auth/somoim/add',fdata,
         {headers : {Authorization: token,"Content-Type" : "multipart/form-data"}})
         .then(function(res){
             if(res.status === 200){

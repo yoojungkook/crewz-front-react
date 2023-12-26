@@ -33,7 +33,7 @@ export default function Home() {
 
         // alert(name);
 
-        axios.get(`http://localhost/api/moim/info/` + name)
+        axios.get(`http://crewz.asuscomm.com/api/moim/info/` + name)
         .then(function(res) {
             if(res.status === 200) {
                 // console.log("moim: " + res.data.dto.);
@@ -73,7 +73,7 @@ export default function Home() {
                     <Carousel.Item className='carousel_item'>
                         <img
                             className="d-block"
-                            src={"http://localhost/api/moim/img/" + info.no + "/1"}
+                            src={"http://crewz.asuscomm.com/api/moim/img/" + info.no + "/1"}
                             alt="First slide"
                         />
 
@@ -83,7 +83,7 @@ export default function Home() {
                         <img
 
                             className="d-block"
-                            src={"http://localhost/api/moim/img/" + info.no + "/2"}
+                            src={"http://crewz.asuscomm.com/api/moim/img/" + info.no + "/2"}
                             alt="Second slide"
                         />
 
@@ -92,7 +92,7 @@ export default function Home() {
                     <Carousel.Item className='carousel_item'>
                         <img
                             className="d-block"
-                            src={"http://localhost/api/moim/img/" + info.no + "/3"}
+                            src={"http://crewz.asuscomm.com/api/moim/img/" + info.no + "/3"}
                             alt="Third slide"
                         />
 

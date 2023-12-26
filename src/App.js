@@ -83,14 +83,6 @@ export default function App() {
                         <img id="home_logo" src="/img/home-logo.png" alt="logo" />
                     </Col>
                 </Row>
-                {/* <Row className="justify-content-md-center">
-                    <Col md="8">
-                        <SearchContainer>
-                            <SearchInput type="text" placeholder="검색어를 입력하세요" />
-                            <SearchButton onClick={handleSearch}>검색</SearchButton>
-                        </SearchContainer>
-                    </Col>
-                </Row> */}
                 <Row style={{ background: '#f2f2f2', marginTop: "2%", borderRadius: '1rem' }}
                     className="row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                     {radios.map((radio, idx) => (
@@ -103,7 +95,6 @@ export default function App() {
                                 // margin: ' 5px 5px ',
                                 cursor: 'pointer'
                             }}>
-
 
                             <div style={{ width: '95%', backgroundColor: 'white', borderRadius: ".5rem", padding: '5%', cursor: 'pointer' }}>
                                 <Col>
@@ -122,7 +113,6 @@ export default function App() {
                         </Link>
                     ))}
                 </Row>
-
 
                 {log ? (
                     <>
