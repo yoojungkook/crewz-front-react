@@ -19,11 +19,13 @@ export default function FindId({show, handleClose}) {
     const findId = () => {
         axios.post('http://crewz.asuscomm.com/api/member/find/id', {}, {params: {name: name, tel: tel}})
             .then(function (res) {
+                console.log('res1:' + res.data.result)
                 if (res.status === 200) {
-                    if (res.data.result !== null) {
-                        alert("회원님의 아이디는" + res.data.result + "입니다.");
+                    console.log('res2:' + res.data.result)
+                    if (res.data.result !== 'null') {
+                        alert('회원님의 아이디는 ' + res.data.result + '입니다.');
                     } else {
-                        alert("정보를 조회할 수 없습니다.");
+                        alert('아이디를 찾을 수 없습니다.');
                     }
                 } else {
                     alert('error:' + res.status);

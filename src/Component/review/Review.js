@@ -8,6 +8,7 @@ import { useLocation } from "react-router-dom";
 
 const Review = () => {
 
+
   const [showAddModal, setAddShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   // const [memberInfom, setMemberInfo] = useState({memberid: "", somoimno: "", categoryName: "", categoryNumber: ""});
@@ -151,7 +152,7 @@ const Review = () => {
 
 
 
-      {/* 사진클릭시 확대모달창 */}
+  {/* 사진클릭시 확대모달창 */ }
       <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
         <Modal.Body>
           <img src={selectedImage} className="img-fluid" alt="Large Preview" />

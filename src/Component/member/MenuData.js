@@ -11,18 +11,18 @@ export const MenuData = [
         icon: <i className="bi bi-person"></i>,
         link: "/member/mypage"
     },
+    // {
+    //     title: "메세지함",
+    //     icon: <i className="bi bi-envelope"></i>,
+    //     link: "/member/message"
+    // },
     {
-        title: "메세지함",
-        icon: <i className="bi bi-envelope"></i>,
-        link: "/member/message"
-    },
-    {
-        title: "나의모임",
+        title: "나의 모임",
         icon: <i className="bi bi-people"></i>,
         link: "/member/mycrew"
     },
     {
-        title: "참가모임",
+        title: "참가한 소모임",
         icon: <i className="bi bi-geo"></i>,
         link: "/member/mycrew/partin"
     },

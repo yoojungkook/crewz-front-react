@@ -146,7 +146,7 @@ export default function MyPage() {
 
     return (
         <div>
-            <div className="wrapper">
+            <div>
                 <div id="profile-wrapper">
                     <img src={'http://crewz.asuscomm.com/api/member/img?id=' + id} id="profile" alt="프로필사진"/>
                 </div>

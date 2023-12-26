@@ -6,11 +6,14 @@ export default function Board() {
     return (
         <Row className="text-center">
             <span style={{ fontSize:'400%' }} >자유 게시판</span>
+            
             {/* <Col xs={1}></Col> */}
             <Col >
-
+                    
                 <BoardAdd />
-
+                
+                
+                
                 <Table border="1" striped bordered hover>
                     <thead>
                         <tr>
