@@ -11,6 +11,7 @@ export default function BoardAdd() {
     return (
         <>
             <Button variant="danger" onClick={handleShow} style={{margin:'20px', fontSize:'100%',float : 'right'}}>글작성</Button>
+            <br/><hr/>
             <Modal
                 show={show}
                 onHide={handleClose}
