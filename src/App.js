@@ -98,7 +98,7 @@ export default function App() {
 
                             <div style={{ width: '95%', backgroundColor: 'white', borderRadius: ".5rem", padding: '5%', cursor: 'pointer' }}>
                                 <Col>
-                                    <Card className=""style={{ border: 'none' }}>
+                                    <Card className="" style={{ border: 'none' }}>
                                         <Card.Img
                                             variant="top"
                                             src={`http://crewz.asuscomm.com/api/category/img/${radio.photo}`}
