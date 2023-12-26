@@ -34,11 +34,7 @@ export default function AlbemHome() {
                         />
                     </Card>
                 </Col>
-
-
-
-
-
+                
                 <AlbemAdd />
 
 
