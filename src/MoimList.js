@@ -49,7 +49,7 @@ export default function MoimList() {
         
     let no = params.get("category");
 
-    axios.get('http://localhost/api/moim/category', {params: {catno: no}})
+    axios.get('http://crewz.asuscomm.com/api/moim/category', {params: {catno: no}})
     .then(function(res) {
       if(res.status === 200) {
         if(res.data.list !== null) {
@@ -69,6 +69,8 @@ export default function MoimList() {
     })
 
   }, []);
+
+  
 
   return (
     <div className="App">

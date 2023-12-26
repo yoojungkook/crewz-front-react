@@ -58,7 +58,7 @@ export default function MoimEdit(){
 
     return (
         <>
-            <Button variant="success" size="lg"onClick={() => setLgShow(true)}>수정하기</Button>
+            <Button id="edit_btn" variant="success" size="lg"onClick={() => setLgShow(true)}>수정하기</Button>
             <Modal
                 style={{ fontSize: '20px' }}
                 size="lg"

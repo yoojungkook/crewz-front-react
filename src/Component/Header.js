@@ -5,6 +5,8 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Link, useLocation } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import NavLogin from "./nav/NavLogin";
+import NavLogout from "./nav/NavLogout";
 
 const SearchContainer = styled.div`
   display: flex;
@@ -53,7 +55,7 @@ export default function Header() {
 
   useEffect(() => {
     const params = new URLSearchParams(location.search);
-        
+
     let name = params.get("no");
 
     // alert(name);
@@ -61,15 +63,27 @@ export default function Header() {
     setRadios(name);
   })
 
+  const [log, setLog] = useState(false);
+
+  useEffect(() => {
+    const LoginId = localStorage.getItem("loginId");
+    if (LoginId !== null) {
+      setLog(true);
+    }
+  }, []);
+
+
   return (
     <div>
-      
-      <Row style={{ margin:'1% 0' }}>
+      <br></br>
+
+
+      <Row style={{ margin: '1% 0' }}>
 
         <Col xs={3}>
-          <img 
-          style={{ width: '80%', borderRadius: '.5rem' }} 
-          src={logoImg} alt="로고사진" 
+          <img
+            style={{ width: '80%', borderRadius: '.5rem' }}
+            src={logoImg} alt="로고사진"
           />
 
         </Col>
@@ -126,8 +140,8 @@ export default function Header() {
           후기
         </Button>
       </Link>
-      <br /><hr/>
-      
+      <br /><hr />
+
 
 
     </div>

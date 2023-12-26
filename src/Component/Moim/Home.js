@@ -22,49 +22,40 @@ export default function Home() {
     const location = useLocation();
 
     const [info, setInfo] = useState([]);
-
-    // const {s no }
-    
+    const [isJoined, setIsJoined] = useState(false);
+    const [isOwner, setIsOwner] = useState(false);
 
     useEffect(() => {
-        const params = new URLSearchParams(location.search);
-        
-        let name = params.get("no");
+        const fetchData = async () => {
+            const params = new URLSearchParams(location.search);
+            const name = params.get("no");
 
-        // alert(name);
+            try {
+                const infoRes = await axios.get(`http://crewz.asuscomm.com/api/moim/info/` + name);
+                if (infoRes.status === 200 && infoRes.data.dto !== null) {
+                    setInfo(infoRes.data.dto);
+                }
 
-        axios.get(`http://crewz.asuscomm.com/api/moim/info/` + name)
-        .then(function(res) {
-            if(res.status === 200) {
-                // console.log("moim: " + res.data.dto.);
-                if(res.data.dto !== null)
-                    setInfo(res.data.dto);
+                const joinRes = await axios.get("http://crewz.asuscomm.com/api/moim/get", {
+                    params: { moimno: name, memberid: localStorage.getItem("loginId") }
+                });
+
+                if (joinRes.status === 200 && joinRes.data.dto !== null) {
+                    alert("참가자");
+                    setIsJoined(true);
+                    if (infoRes.data.dto.memberid === localStorage.getItem("loginId")) {
+                        alert("만든사람");
+                        setIsOwner(true);
+                    }
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
             }
-        })
-    })
+        };
 
-    // useEffect(()=>{
-    //     const params = new URLSearchParams(location.search);
-        
-    //     let nameTwo = params.get("no");
-    //     // {
-    //         // localStorage.getItem("loginId") !== null ? (
-    //         axios.get("http://localhost/api/moim/get", { params: { moimno: nameTwo, memberid: localStorage.getItem("loginId") } })
-    //             .then(function (res) {
-    //                 if (res.status === 200) {
-    //                     // if(res.data.dto !== null) {
-    //                     //     return (
-    //                     //         <Button variant="secondary" size="lg">
-    //                     //             탈퇴 하기
-    //                     //         </Button>
-    //                     //     );
-    //                     // }
-
-    //                 }
-    //             })
-    //         // ) : <div></div>
-    //     // }
-    // })
+        fetchData();
+    
+    }, [location.search]);
 
     return (
         <div>
@@ -106,22 +97,22 @@ export default function Home() {
             <h4 style={{ color: '#a8a8a8' }}>{info.info}</h4><br />
 
             <div className="d-grid gap-2">
-                
-                {/* 남이 만든 모임 */}
-                <Button variant="danger" size="lg">
-                    가입 하기
-                </Button>
-                {/* 내가 만든 모임일 경우 */}
-                <MoimEdit/>
-                {/* 이미 가입된 모임의 경우 */}
-                <Button variant="secondary" size="lg">
-                    탈퇴 하기
-                </Button>
-
+                {isJoined && !isOwner && (
+                    <Button variant="secondary" size="lg">
+                        탈퇴 하기
+                    </Button>
+                )}
+                {isOwner && <MoimEdit />}
+                {!isJoined && !isOwner && (
+                    <Button variant="danger" size="lg">
+                        가입 하기
+                    </Button>
+                )}
             </div>
             <hr /><br />
             <Textarea id="content" value={info.content}>
             </Textarea>
+            
 
         </div>
 
