@@ -31,7 +31,7 @@ class Router extends Component {
                     <Route path="/moim/home" element={<Home />} />
                     <Route path="/moim/albem" element={<AlbemHome />} />
                     <Route path="/moim/somoim" element={<SomoimHome />} />
-                    <Route path="/moim/review/Review" element={<Review />} />
+                    <Route path="/moim/review" element={<Review />} />
                     <Route path="/moim/board" element={<Board/>}/>
                     <Route path="/moim/board/edit" element={<BoardEdit/>}/>
                     <Route path="/moim/board/detail" element={<BoardDetail/>}/>
