@@ -11,13 +11,14 @@ const ReviewAddModal = ({ showAddModal, handleClose, info }) => {
   const handleModalOpen = () => {
     console.log(info);
     // console.log("list 출력!")
-    axios.post('http://crewz.asuscomm.com/api/review/mylist', {}, {params: {moimno: info.moimno, memberid: info.memberid}})
+    axios.get('http://crewz.asuscomm.com/api/somoim/mysomoim/' + localStorage.getItem("loginId"))
     .then(function(res) {
       if(res.status === 200) {
-        console.log(res.data.list);
+        // console.log(res.data.list);
+        console.log("flag:"  + res.data.flag);
         const setItem = res.data.list.map(item => ({
-          no: item.somoimno,
-          title: item.somoimtitle
+          no: item.no,
+          title: item.title
         }))
 
         setSomoim(setItem);

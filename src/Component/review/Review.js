@@ -7,99 +7,94 @@ import axios from "axios";
 import { useLocation } from "react-router-dom";
 
 const Review = () => {
-
-
+  const [join, setJoin] = useState(false);
   const [showAddModal, setAddShowModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
-  // const [memberInfom, setMemberInfo] = useState({memberid: "", somoimno: "", categoryName: "", categoryNumber: ""});
-
   const [memberInfom, setMemberInfo] = useState({});
   const [id, setId] = useState(null);
-
-  {/* 사진클릭시 확대모달창 */ }
   const [selectedImage, setSelectedImage] = useState(null);
   const [modalShow, setModalShow] = useState(false);
   const handleImageClick = (imageUrl) => {
     setSelectedImage(imageUrl);
-    // Open the modal
     setModalShow(true);
   };
-
   const location = useLocation();
   const [radios, setRadios] = useState([]);
-  useEffect(() => {
-
-    const params = new URLSearchParams(location.search);
-    let no = params.get("no");
-
-    axios.get('http://crewz.asuscomm.com/api/review/list', { params: { "no": parseInt(no, 10) } })
-      .then(function (res) {
-        if (res.status === 200) {
-          console.log(res.data.list === null ? "yes" : "no");
-          if (res.data.list !== null) {
-            const item = res.data.list.map((review) => ({
-              no: review.no,
-              memberid: review.memberid,
-              moimno: review.moimno,
-              somoimno: review.somoimno,
-              title: review.title,
-              content: review.content,
-              photo1: review.photo1,
-              photo2: review.photo2,
-              photo3: review.photo3,
-              mdate: review.mdate,
-              name: review.name
-            }));
-
-            const memberid = localStorage.getItem("loginId");
-            const moimno = res.data.list[0].moimno;
-
-            setMemberInfo({
-              memberid: memberid,
-              moimno: moimno,
-            });
-
-            setRadios(item);
-          } else {
-            setMemberInfo({
-              memberid: localStorage.getItem("loginId"),
-              moimno: no,
-            });
-          }
-        } else {
-          setRadios(null);
+  useEffect(async () => {
+    axios.get("http://crewz.asuscomm.com/api/somoim/review/check/" + localStorage.getItem("loginId"))
+    .then(function (res) {
+      if (res.status === 200) {
+        if (res.data.flag === true)
+          setJoin(true);
+        else {
+          console.log("소모임 가입한적 없음");
         }
-      })
+      } else {
 
-    if(localStorage.getItem("loginId") !== null) {
-      axios.post('http://crewz.asuscomm.com/api/review/mylist', {}, { params: { moimno: no, memberid: localStorage.getItem("loginId") } })
-        .then(function (res) {
-          if (res.status === 200) {
-            console.log("null 여부: " + res.data.list === null ? "null" : "no");
-            if(res.data.list === null) {
-              setId(null);
-            } else {
-              setId(localStorage.getItem("loginId"));
-            }
+      }
+    });
+    try {
+      const params = new URLSearchParams(location.search);
+      let no = params.get("no");
+
+      const res = await axios.get('http://crewz.asuscomm.com/api/review/list', { params: { "no": parseInt(no, 10) } });
+      if (res.status === 200) {
+        console.log(res.data.list === null ? "yes" : "no");
+        if (res.data.list !== null) {
+          const item = res.data.list.map((review) => ({
+            no: review.no,
+            memberid: review.memberid,
+            moimno: review.moimno,
+            somoimno: review.somoimno,
+            title: review.title,
+            content: review.content,
+            photo1: review.photo1,
+            photo2: review.photo2,
+            photo3: review.photo3,
+            mdate: review.mdate,
+            name: review.name,
+            isOwner: false    // 소모임 주최자 여부 초기값 설정
+          }));
+
+          const memberid = localStorage.getItem("loginId");
+          const moimno = res.data.list[0].moimno;
+
+          setMemberInfo({
+            memberid: memberid,
+            moimno: moimno,
+          });
+
+         
+          // 각 리뷰에 대한 가입 여부 확인
+          for (const review of item) {
+            if (review.memberid === localStorage.getItem("loginId"))
+              review.isOwner = true;
           }
+          setRadios(item);
+        }
+      } else {
+        setMemberInfo({
+          memberid: localStorage.getItem("loginId"),
+          moimno: no,
         });
+      }
+    } catch (error) {
+      console.error("데이터를 불러오는 중 오류 발생:", error);
     }
+  }, [location.search]);
 
-    console.log(memberInfom)
-  }, [])
 
   return (
     <div>
-      {id !== null ? (
+      {join && (
         <div className="fixed-bottom d-flex justify-content-end" style={{ paddingBottom: '20px', paddingRight: '10%' }}>
           <div onClick={() => setAddShowModal(true)}>
             <img src="/img/plusbotton.png" style={{ width: '60px', height: '60px' }} />
           </div>
           <ReviewAddModal showAddModal={showAddModal} handleClose={() => setAddShowModal(false)} info={memberInfom} />
         </div>
-      ) : (<div></div>)}
+      )}
 
-      {/* <Container className="mt-5"> */}
       {radios.length === 0 ? (
         <Row ></Row>
       ) : radios.map((item, idx) => (
@@ -123,36 +118,29 @@ const Review = () => {
                   <Image src={`http://crewz.asuscomm.com/api/review/img/${item.moimno}/${item.somoimno}/${item.no}/${item.photo1}`} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo1)} />
                   <Image src={`http://crewz.asuscomm.com/api/review/img/${item.moimno}/${item.somoimno}/${item.no}/${item.photo2}`} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo2)} />
                   <Image src={`http://crewz.asuscomm.com/api/review/img/${item.moimno}/${item.somoimno}/${item.no}/${item.photo3}`} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo3)} />
-                  {/* <img src={imageSrc(item, 1)} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo1)} />
-                  <img src={imageSrc(item, 2)} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo2)} />
-                  <img src={imageSrc(item, 3)} rounded alt="대체 텍스트" style={{ width: '15%', height: 'auto', marginRight: '2%' }} onClick={() => handleImageClick(item.photo3)} /> */}
+
                 </div>
               </section>
             </article>
 
-            {/* <Comment /> */}
-
-            {item.memberid === localStorage.getItem("loginId") ? (
+            {item.isOwner &&(
               <div className="text-end" style={{ marginTop: '-2rem' }}>
-                <Button variant="outline-success" className="edit-review-btn" onClick={() => setShowEditModal(true)} style={{ marginRight: '10px' }}>글수정</Button>
-                <ReviewEditModal showEditModal={showEditModal} handleClose={() => setShowEditModal(false)} />
-                <Button variant="outline-danger" className="edit-delete-btn">글삭제</Button>
-              </div>
-            ) : (
-              <div></div>
+              <Button variant="outline-success" className="edit-review-btn" onClick={() => setShowEditModal(true)} style={{ marginRight: '10px' }}>글수정</Button>
+              <ReviewEditModal showEditModal={showEditModal} handleClose={() => setShowEditModal(false)} />
+              <Button variant="outline-danger" className="edit-delete-btn">글삭제</Button>
+            </div>
             )}
             <hr style={{ border: '3px solid black' }} />
-            {/* <br />
-            <br /> */}
+
           </Col>
           <Col xs={1}></Col>
         </Row>
       ))}
-      {/* </Container> */}
 
 
 
-  {/* 사진클릭시 확대모달창 */ }
+
+      {/* 사진클릭시 확대모달창 */}
       <Modal show={modalShow} onHide={() => setModalShow(false)} centered>
         <Modal.Body>
           <img src={selectedImage} className="img-fluid" alt="Large Preview" />
