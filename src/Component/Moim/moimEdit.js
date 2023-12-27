@@ -69,8 +69,9 @@ export default function MoimEdit({ Moimno }) {
         })
             .then(function (res) {
                 if (res.status === 200) {
-                    alert("수정성공");
-                    navigate(`/moim/home?no=${res.data.dto.no}`);
+                    alert(res.data.flag);
+                    window.location.reload();
+                    
                 } else {
                     alert(`에러 ${res.status}`);
                 }
