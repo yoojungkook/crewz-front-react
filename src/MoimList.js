@@ -110,7 +110,7 @@ export default function MoimList() {
                 <Card className="shadow-sm">
                   <Card.Img
                     variant="top"
-                    src={"http://localhost/api/moim/img/" + item.no + "/1" }
+                    src={"http:///crewz.asuscomm.com/api/moim/img/" + item.no + "/1" }
                   />
                 </Card>
                 <br />
