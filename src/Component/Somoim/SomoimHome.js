@@ -127,9 +127,7 @@ export default function SomoimHome() {
             <Image src={"http://crewz.asuscomm.com/api/somoim/img/" + radio.moimno + "/" + radio.no + "/" + radio.photo} fluid style={{ borderRadius: '5px' }} />
           </Col>
           <Col xs={9} className="position-relative somoim-content">
-            <h5>작성자 : {radio.memberid}</h5>
-            <h5>가입여부 : {radio.isJoined ? "가입됨" : "가입 x"}</h5>
-            <h5>만작여부 : {radio.isOwner ? "만든이" : "x"}</h5>
+            <h7>작성자 : {radio.memberid}</h7>
             <h4 className="fw-bold">{radio.title}</h4>
             <p>{radio.content}</p>
             <p>
