@@ -170,15 +170,15 @@ export default function MyPage() {
                             <td><Form.Control type="text" name="id" value={member.id} readOnly={true}/>
                                 <label htmlFor=""/></td>
                         </tr>
-                        <tr>
-                            <th>비밀번호</th>
+                        {/* <tr>
+                            <th></th>
                             <td>
                                 <Form.Control type="password" id="pwd" value={member.pwd} readOnly={true}/>
                                 <label htmlFor=""/>
-                            </td>
-                        </tr>
+                            </td> 
+                        </tr> */}
                         <tr>
-                            <th></th>
+                            <th>비밀번호</th>
                             <td><Form.Control type="password" id="pwdNew" name="pwd" placeholder="새로운 비밀번호"
                                               onInput={onInputPwd}/>
                                 <label htmlFor="pwdNew">{pwdMessage}</label>

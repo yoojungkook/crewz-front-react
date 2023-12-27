@@ -122,7 +122,7 @@ export default function Header() {
           사진첩
         </Button>
       </Link>
-      <Link to={"/moim/board?no=" + radios}>
+      {/* <Link to={"/moim/board?no=" + radios}>
         <Button
           variant={selectedButton === '게시판' ? 'danger' : 'outline-danger'}
           className={`menubar`}
@@ -130,7 +130,7 @@ export default function Header() {
         >
           게시판
         </Button>
-      </Link>
+      </Link> */}
       <Link to={"/moim/review?no=" + radios}>
         <Button
           variant={selectedButton === '후기' ? 'danger' : 'outline-danger'}
